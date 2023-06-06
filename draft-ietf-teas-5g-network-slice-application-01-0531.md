@@ -142,8 +142,8 @@ informative:
               target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3257
    GST:
               title: "GSMA Generic Network Slice Template"
-              date: 2019-10-19
-              target: https://www.gsma.com/newsroom/all-documents/generic-network-slice-template-v2-0/
+              date: 2023-01-27
+              target: https://www.gsma.com/newsroom/wp-content/uploads/NG.116-v8.0-1.pdf
    ZSM-003:
               title: "ETSI ZSM003 Zero-touch network and Service Management (ZSM); End-to-end management and orchestration of network slicing"
               date: 2021-06
@@ -409,7 +409,7 @@ in 5G slices and IETF slices respectively
 An example of 5G E2E Network Slice is showed in {{Figure6}}.  Each e2e
 network slice contains RAN slice, CN slice and one or more IETF
 network Slices. 3GPP identifies each e2e network slice using an
-integer called S-NSSAI.  In {{Figure4}} there are three instances of e2e
+integer called S-NSSAI.  In {{Figure6}} there are three instances of e2e
 network slices which are identified by S-NSSAI 01111111, 02222222 and
 02333333, respectively.  Each instance of e2e network slice contains
 AN slice, CN Slice and one or more IETF network slices.  For example,
@@ -451,7 +451,7 @@ The following network slice related identifiers in management plane,
 control plane and data(user) plane play an important role in end-to-
 end network slice mapping
 
-*  Single Network Slice Selection Assistance Information(S-NSSAI):
+*  Single Network Slice Selection Assistance Information (S-NSSAI):
    The end-to-end network slice identifier, which is defined in
    {{TS-23.501}}; S-NSSAI is used during 3GPP network slice signalling
    process.
@@ -470,9 +470,13 @@ end network slice mapping
    identifiers and doesn't necessarily require new encapsulation.
 
 *Note: the term "IETF Network Slice Interworking Identifier" is
-proposed but requires further discussion.
+proposed but requires further discussion. The term "handoff" is used sometimes 
+along the document with similar purpose. Alignment is needed. Todo by documents editors.
 
 # 5G E2E Network Slice Mapping Procedure
+
+ToDo: Luis to review section 4.
+
 This section provides a general procedure of network slice mapping:
 
 ~~~   
@@ -505,7 +509,7 @@ network slice instance with certain characteristics.
 
 2.  Based on the service requirement, 3GPP NSMF acquires requirements
 for the end-to-end network slice instance, which is defined in
-Service Profile({{TS-28.541}} section 6.3.3).
+Service Profile (section 6.3.3 of {{TS-28.541}}).
 
 3.  Based on Service Profile, 3GPP NSMF determines the network
 function and the required resources in AN, CN and TN networks.  It
@@ -549,14 +553,14 @@ corresponding IETF network slice.  It may encapsulate the packet with
 slice specific identifiers for enforcing the SLA of IETF Network
 Slice service in the in transport network.
 
-##  5G E2E Network Slice Mapping in Management Plane
+#  5G E2E Network Slice Mapping in Management and Control Planes
 The transport network management Plane maintains the interface
-between 3GPP NSMF and TN NSSMF, which 1) In order to guarantees that
+between 3GPP NSMF and TN NSSMF, which 1) in order to guarantees that
 IETF network slice could satisfy the requirements of connection
 between AN and CN, requirement parameters are necessary for ietf
 network slice northbound interface ; 2) builds up the mapping
 relationship between NSI identifier and IETF network slice service
-ID;
+ID.
 
 Service Profile defined in {{TS-28.541}} represents the requirement of
 end-to-end network slice instance in 5G network.  Parameters defined
@@ -574,7 +578,7 @@ relevant parameters in order to define Network Slice Profile for
 Transport Network.  Network slice requirement parameters are also
 necessary for the definition of transport network northbound
 interface.  NSMF delivers SLA/QoS related parameters and mapping
-related parameters to IETF controller through NBI;
+related parameters to IETF NSC through the IETF Network Slice Service Interface.
 
 3GPP TN NSSMF will request the IETF Network Slice service adding in
 the IETF Network Slice service request some slice identifier to the
@@ -600,6 +604,9 @@ depicted in {{Figure21}}:
     the customer slice request, according to the SLOs and SLEs
     received from the higher level system.
 
+ToDo: to add the EP_RP representation in the figure.
+ToDo: To consider tp move this figure (& related content) before the examples. 
+ToDo: connect this part of teh document with the examples, adding some sentences pointing out to the examples.
 ~~~
         3GPP concern
 
@@ -629,7 +636,7 @@ depicted in {{Figure21}}:
 ~~~
 {: #Figure21 title="conceptual view on 3GPP and TN connectivity meeting points"}
 
-###  Mapping EP_transport to IETF NS CE endpoints
+##  Mapping EP_transport to IETF NS CE endpoints
 The 3GPP Management system provides the EP_Transport IOC to extend
 the slice awareness to the transport network.  The EP_Transport IOC
 contains parameters as IP address, additional identifiers (i.e., vlan
@@ -645,7 +652,7 @@ on monolithic, purpose- specific network elements, in the way that
 the IP address attribute from the EP_Transport IOC directly
 corresponds to the IP address of an interface of such network
 element.  In this case, the information on EP_Transport IOC can be
-directly passed to the IETF NSC through the NBI, even though some
+directly passed to the IETF NSC through the IETF Network Slice Service Interface, even though some
 additional information could be yet required, not being defined yet
 on 3GPP specifications (e.g., the mask applicable to the IP address
 field on EP_Transport).  Note that information gaps are further
@@ -658,7 +665,7 @@ server or in a data center.  In these other cases it is necessary to
 define additional means for eliciting the endpoint at the CE side
 corresponding to the endpoint of the 3GPP-related function.
 
-With solely EP_Transport characterization in 3GPP as today (i.e.,
+With solely EP_Transport characterization in 3GPP (i.e.,
 according to 3GPP Release 16 specifications), we could expect the NS
 CE endpoint being identified by a combination of IP address and some
 additional information such as vlan tag, MPLS label or SR SID that
@@ -670,7 +677,7 @@ slice boundary.  Finally, the QoS profile, if present, helps to
 determine configurations needed at the PE side to respect the SLOs in
 the connection between CEs slice endpoints.
 
-###  Mapping IETF NS CE to PE endpoints
+##  Mapping IETF NS CE to PE endpoints
 As described in {{!I-D.ietf-teas-ietf-network-slices}}, there are
 different potential endpoint positions for an IETF NS.
 
@@ -707,9 +714,9 @@ SLOs indicated in the request.
 
 Being the IETF slice request a technology-agnostic procedure, the
 identification of the slice endpoints at the PE side should leverage
-on generic information passed through the NBI to the IETF NSC.
+on generic information passed through the IETF Network Slice Service Interface to the IETF NSC.
 
-#  5G E2E Network Slice Mapping in Control Plane
+##  5G E2E Network Slice Mapping in Control Plane
 There is no explicit interaction between transport network and AN/CN
 in the control plane, but the S-NSSAI defined in {{TS-23.501}} is treated
 as the end-to-end network slice identifier in the control plane of AN
@@ -717,6 +724,9 @@ and CN, which is used in UE registration and PDU session setup.  In
 this draft, it is assumed that there is a correspondence between
 S-NSSAI and the IETF Network Slice service identifier in the
 management plane.
+
+ToDo: there is no direct relationship between 3GPP control plane signalling and IETF control plane. 
+Add sentence on this respect to provide some description here (Xuesong).
 
 Note: to ensure consistency with NBI YANG model (i.e., service tag)
 
@@ -760,6 +770,7 @@ UPF: User data goes from core network functions to transport network
 The following picture shows the user plane protocol stack in end-to-
 end 5G system.
 
+ToDo: to add Figure title.
 ~~~
   +-----------+                    |                  |               |
   |Application+--------------------|------------------|---------------|
@@ -796,10 +807,13 @@ The following figure shows the typical encapsulation in N3 interface.
    +------------------------+
 ~~~
 
+ToDo: to add Figure title.
+
 There are several options in the encapsulation that could be used in
 data plane of network slice mapping.
 
 ## Methods for Mapping between 3GPP E2E network slice and IETF network slice
+ToDo: check figure numbers an all this section. Reza takes care of this section.
 Referring to {{Figure2}}, {{Figure3}} and {{Figure4}}, a 5G end-to-end network
 slice might have one or more IETF network slices.  Figure 7 is a
 general representation of any of transport networks in 5G end-to-end
@@ -1103,7 +1117,7 @@ details of this solution is described in {{draft-ietf-dmm-tn-aware-mobility}}.
 {: #FigureA13 title="UDP source port soluiton for IETF Network Slice Mapping"}
 
 
-# Example of IETF Network Slice request through IETF Network Slice NBI
+# IETF Network Slice request through IETF Network Slice NBI
    As discussed in {{!I-D.ietf-teas-ietf-network-slices}}, to fulfil IETF
    network slices and to perform monitoring on them, an entity called
    IETF Network Slice Controller (NSC) is required to take abstract
