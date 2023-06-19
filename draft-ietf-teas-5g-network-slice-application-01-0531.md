@@ -108,6 +108,12 @@ informative:
               title: "Mobility aware Transport Network Slicing for 5G"
               date: 2023-04-19   
               target: https://datatracker.ietf.org/doc/draft-ietf-dmm-tn-aware-mobility/
+
+   draft-srld-teas-5g-slicing:
+              title: "A Realization of IETF Network Slices for 5G Networks Using Current IP/MPLS Technologies"
+              date: 2023-05-23
+              target: https://datatracker.ietf.org/doc/draft-srld-teas-5g-slicing/  
+
    draft-ietf-teas-ietf-network-slice-nbi-yang:
               title: "A YANG Data Model for the IETF Network Slice Service"
               date: 2023-03-13   
@@ -291,7 +297,7 @@ In this deployment a single 5G E2E network slice might have one or more IETF net
    :           : :......: :        :.....:        :
    :...........:          :.......................:
 Legend
-   INS: One or more IETF Network Slices
+   INS: IETF Network Slice
    RS: RAN Slice
    CS: Core Slice
 ~~~
@@ -317,7 +323,7 @@ In general, the RAN network consists of network functions for processing the rad
         :        :.....:        : :......: :         :.....:         :
         :.......................:          :.........................:
      Legend
-       INS: One or more IETF Network Slices 
+       INS: IETF Network Slice
        RS: RAN Slice
        CS: Core Slice
        FN: Fronthaul IETF network
@@ -355,7 +361,7 @@ CUs through F1 interfaces.
      :        :.....:       :.....:       : :....: :       :...:       :
      :....................................:        :...................:
   Legend
-    INS: One or more IETF Network Slices
+    INS: IETF Network Slice
     RS: RAN Slice
     CS: Core Slice
     FN: Fronthaul IETF network
@@ -728,13 +734,12 @@ Add sentence on this respect to provide some description here (Xuesong).
 Note: to ensure consistency with NBI YANG model (i.e., service tag)
 
 #  5G E2E Network Slice Mapping in Data Plane
-If multiple network slices are carried through one physical interface
-between AN/CN and TN, IETF Network Slice Interworking ID in the data
-plane needs to be defined.  If different network slices are
-transported through different physical interfaces, Network Slices
-could be distinguished by the interface directly.  Thus IETF Network
-Slice Interworking ID is not the only option for network slice
-mapping, while it may help in introducing new network slices.
+If multiple 5G E2E network slices data flows are carried from one physical interface
+between AN/CN and TN, there should be a mechanizm for provider edge (PE) nodes to distinguish between these flows in order to apply and to enforce the different SLO/SLE policy to each flow. In other words, a solution needed in order to define an IETF Network Slice Interworking in the data plane.  
+
+If different network slices are
+transported through different physical interfaces, 5G E2E network slices
+could be distinguished by the interface directly.  However if all flows from different 5G network slice flows are transported through same interface, the PE nodes needs to be able to distingush each flows.
 
 ## Data Plane Mapping Considerations
 The following picture shows the end-to-end network slice in data
@@ -750,10 +755,11 @@ plane（taking the IETF network slice between RAN and UPF as an example:
    which maps the packet to the corresponding IETF network slice.
 
 ~~~
+   <-----AN NS----> <----------TN NS-----------> <---- CN NS----->
+
    +--+       +-----+                           +----------------+
    |UE|- - - -|(R)AN|---------------------------|       UPF      |
    +--+       +-----+                           +----------------+
-    |<----AN NS---->|<----------TN NS---------->|<----CN NS----->|
 ~~~
 {: #Figure23 title="The mapping between 3GPP slice and transport slice"}
 
@@ -768,6 +774,7 @@ The following picture shows the user plane protocol stack in end-to-
 end 5G system.
 
 ToDo: to add Figure title.
+
 ~~~
   +-----------+                    |                  |               |
   |Application+--------------------|------------------|---------------|
@@ -786,6 +793,7 @@ ToDo: to add Figure title.
        UE              5G-AN       |        UPF       |      UPF      |
                                    N3                 N9              N6
 ~~~
+
 The following figure shows the typical encapsulation in N3 interface.
 
 ~~~
@@ -810,26 +818,27 @@ There are several options in the encapsulation that could be used in
 data plane of network slice mapping.
 
 ## Methods for Mapping between 3GPP E2E network slice and IETF network slice
-ToDo: check figure numbers an all this section. Reza takes care of this section.
 Referring to {{Figure2}}, {{Figure3}} and {{Figure4}}, a 5G end-to-end network
-slice might have one or more IETF network slices.  Figure 7 is a
+slice might have one or more IETF network slices. {{FigureA}} is a
 general representation of any of transport networks in 5G end-to-end
-network slice where the IETF network slice provides the connectivity
+network slice where the IETF network slice INS_a provides the connectivity
 between network functions NF1 and NF2 to satisfy the specific SLO/
-SLE.  For example, {{FigureA}} could represent IETF network slice INS1
+SLE.  For example, {{FigureA}} could represent IETF network slice INS1 of {{Figure4}}
 where connectivity needed between network functions CU and UPF or it
 could represent IETF network slice INS4 between network functions DU
 and CU.
+
 Suppose the network function NF1 sends the traffic to NF2.  The data
-plane mapping is mainly about how the identification of 3GPP network
+plane mapping is mainly addresses how the identification of 3GPP network
 slice is conveyed and represented on data path, and how the provider
-network PE nodes map the received traffic in context of 5G end-to-end
-network slice to the IETF network slice services.  It is crucial for
+network PE nodes map the traffic from context of 5G end-to-end
+network slice to the IETF network slice services.nIt is crucial for
 PE nodes to be able to map the traffic to the appropriate IETF
 network slice so as to enforce the SLO/SLE policy.
 
 ~~~
-          <------ IETF Network Slice Service ------->
+          <------ IETF Network Slice Service INS_a ------>
+
                  AC         .-------.           AC
                  |        ,'         `.         |
                  |      ,'             `.       |
@@ -847,66 +856,72 @@ network slice so as to enforce the SLO/SLE policy.
 
 To provide an overview of various mechanisms of mapping 5G E2E
 network slice to IETF network slices, we focus on IETF network slice
-INS1 in Figure 4 where it provides the connectivity between network
-functions CU and UPF.  Figure 8 shows this scenario.  Although the
+INS1 in {{Figure4}} where IETF network slice INS1 provides the connectivity between network
+functions CU and UPF. {{Figure8}} shows this scenario.  Although the
 various mapping techniques considered in this section is for IETF
 network slice INS1, they are all applicable to other IETF network
 slices of {{Figure2}}, {{Figure3}} and {{Figure4}}, i.e., INS2, INS3 and INS4.
 
-The IETF network slice INS1 which provides the connectivity between
+The IETF network slice INS1 provides the connectivity between service demarcation points 
 SDP1 and SPD2.  These SDPs are the N3 interfaces on CU and UPF,
 respectively.  As shown in {{Figure8}}(A) and {{Figure8}}(B), the SDPs
-could be either loopback interface or a physical interface on CU and
-UPF.  In rest of this section only case (A) is considered although
-the various mapping methods are identically applicable to both cases.
+could be either loopback interfaces or a physical interfaces on CU and
+UPF network functions.  For simplicity case (A) is considered in this section although
+the various mapping methods are identically applicable to both cases (A) and (B).
 
 ~~~
-         SDP1                  INS1                  SDP2
-       (N3 I/F)                 |                  (N3 I/F)
-          |                 .---|---.                  |
-          |               ,'    |    `.                |
-          v             ,'      V      `.              V
+          <-------------------- INS1 ------------------>
+
+         SDP1                                        SDP2
+       (N3 I/F)                                    (N3 I/F)
+          |                 .-------.                  |
+          |               ,'         `.                |
+          v             ,'             `.              V
       --------       -------          -------       --------
-      |   o=============================================o  |
+      |   O  |       |     |          |     |       |  O   |
       |      |       | PE1 |          | PE2 |       |      |
-      | CU   |       |     |          |     |       | UPF  |
+      |  CU  |       |     |          |     |       |  UPF |
       --------       ------- Provider -------       --------
                          `.  Network  ,'
                            `.       ,'
                              -------
                                (A)
 
-            SDP1               INS1                SDP2
-          (N3 I/F)              |                (N3 I/F)
-             |              .---|---.               |
-             |            ,'    |    `.             |
-             v          ,'      V      `.           V
+
+             <----------------- INS1 --------------->
+
+            SDP1                                  SDP2
+          (N3 I/F)                               (N3 I/F)
+             |              .-------.               |
+             |            ,'         `.             |
+             v          ,'             `.           V
       --------       -------          -------       --------
-      |      *======================================*      |
+      |      *       |     |          |     |       *      |
       |      |       | PE1 |          | PE2 |       |      |
-      | CU   |       |     |          |     |       | UPF  |
+      |  CU  |       |     |          |     |       |  UPF |
       --------       ------- Provider -------       --------
                          `.  Network  ,'
                            `.       ,'
                              -------
-
                                (B)
     Legend:
+     <---> IETF Network Slice Service between SDP1 and SDP2
       *  SDP (N3 interface as CU IP interface)
       O  SDP (N3 as CU loopback interface)
 ~~~
 {: #Figure8 title="Representation of a Typical IETF Network Slice in 3GPP Network"}
 
+Various techniques can be used to map the IETF network slice to 5G E2E network slice.
 The section covers the following techniques which can be used for
 mapping between 5G E2E network slice and IETF network slice services.
 Note that these techniques might also be used by IETF network slice
 controller (NSC) to influence the realization of the IETF network
-slice services.  The latter case is out of scope of the current
+slice services as well.  The latter case is out of scope of the current
 draft:
 
 *  Mapping based on VLAN
 
-*  Mapping based on MPLS label
+*  Mapping based on MPLS label or SR-MPLS SID
 
 *  Mapping based on SRv6 SID
 
@@ -927,8 +942,10 @@ using the VLAN ID.  In this scenario, the VLANs assigned by network
 functions CU and UPF are used for the handoff to the provider
 network.
 
+Refer to section 4.1 of {{draft-srld-teas-5g-slicing}} for details of this solution and how it is realized by provider network.
+
 ~~~
-       <-------------------- INS1 ------------------->
+         <-------------------- INS1 ------------------->
 
            VLAN Handoff  IP/MPLS Services
                  |              |
@@ -950,26 +967,27 @@ network.
       O  SDP (N3 interface)
       +  Access points to provider network
       ... VLAN hand-off
-      === IP/MPLS transport service in provider network
+      === IP/MPLS transport service in provider network 
+          (i.e., realization of INS1)
 ~~~
 {: #Figure9 title="VLAN hand-off based for IETF Network Slice Realization"}
 
-### Mapping based on MPLS Label
-This section describes an optional solution for mapping the 3GPP E2E
-network slice traffic to IETF network slices based on MPLS labels.
-The MPLS labels carried in the packets sent from CU to UPF can be
+### Mapping based on MPLS Label or SR-MPLS SID
+This section describes another solution for mapping the 5G E2E
+network slice traffic to IETF network slices based on MPLS/SR-MPLS labels/SIDs.
+The labels/SIDs carried in the packets sent from CU to UPF can be
 used by the provider edge (PE) nodes to infer the identification of
 the 5G E2E network slices and map the packet to the corresponding
-IETF network slice.  Figure 10 shows an example where the 5G E2E
+IETF network slice. {{Figure10}} shows an example where the 5G E2E
 network slice is mapped to IETF network slice INS1 using the MPLS
-label.
+label or SR-MPLS SID. In this case, the MPLS label or SR-MPLS SID is used for the handoff to the provider network.
 
-In this case, the MPLS label is used for the handoff to the provider
-network.
+Refer to section 4.3 of {{draft-srld-teas-5g-slicing}} for details of this solution and how it is realized by provider network.
 
 ~~~
          <-------------------- INS1 ------------------->
-           MPLS tunnel (represented by MPLS label)
+
+          tunnel (represented by MPLS label or SR-MPLS SID)
                  |
                  |
         N3 I/F   |          .-------.                N3 I/F
@@ -986,15 +1004,15 @@ network.
                                (A)
     Legend:
          * SDP1 and SPD2 (N3 Address)
-         === MPLS tunnel between SDP1 and SDP2
+         === tunnel between SDP1 and SDP2 (MPLS or SR-MPLS)
 ~~~
-{: #Figure10 title="MPLS label based IETF Network Slice Mapping"}
+{: #Figure10 title=" MPLS label or SR-MPLS SID based IETF Network Slice Mapping"}
 
 ### Mapping based on SRv6 SID
- This section describes an optional solution for mapping the 3GPP E2E
+ This section describes a solution for mapping the 5G  E2E
  network slice traffic to IETF network slices based on SRv6 SIDs.
- This solution is similar to the mapping based on MPLS label but for
- IPv6 networks.  As shown in {{Figure11}}, the SRv6 SIDs is added by CU
+ This solution is similar to the mapping based on MPLS label or SR-MPLS SID but using
+ SRv6 tunnels.  As shown in {{Figure11}}, the SRv6 SIDs is added by CU
  or UPF to the data path traffic between SDP1 and SPD2.  The SRv6 SIDs
  can be used by the provider edge (PE) nodes to infer the
  identification of the 5G E2E network slices and map the traffic to
@@ -1005,8 +1023,11 @@ network.
  identification is mapped into the 128-bit IPv6 SID, thus the SRv6 SID
  is used for the handoff to the provider network.
 
+Refer to section 4.2 of {{draft-srld-teas-5g-slicing}} for details of this solution and how it is realized by provider network.
+
 ~~~
          <-------------------- INS1 ------------------->
+
             SRv6 tunnel (represented by SRv6 SID)
                  |
                  |
@@ -1027,16 +1048,16 @@ network.
          * SDP1 and SPD2 (N3 address)
          === SRv6 tunnel between SDP1 and SDP2
 ~~~
-{: #Figure11 title="SRV6 hand-off based for IETF Network Slice Realization"}
+{: #Figure11 title="SRV6 hand-off based for IETF Network Slice Mapping"}
 
 ### Mapping based on Policy Based Routing (PBR)
-This section provides an optional solution for mapping the 3GPP E2E
+This section provides a solution for mapping the 3GPP E2E
 network slice traffic to IETF network slices.  As shown in {{Figure12}},
 in some deployments of the 5G network slices, it would be possible
 for provider edge (PE) nodes to infer the identification of the 3GPP
-E2E network slice from the content of the IP data packet between CU
-and UPF.  In these cases, the PE nodes can identify the 3GPP E2E
-network slice using any combination of the following information and
+E2E network slice from the content of the IP data packet sent between CU
+and UPF.  In these cases, the PE nodes can identify the 5G E2E
+network slice using any combination of the following attributes and
 then map them to IETF network slice services:
 
 *  Source N3 IP address
@@ -1047,15 +1068,17 @@ then map them to IETF network slice services:
 
 *  DSCP
 
-*  Other information in the packet
-Once the PE nodes receives the IP packets, it may apply the policy-
-based routing (PBR) to the packet to map the traffic of specific 3GPP
+*  Other information in the packet (at IP/MPLS layer or upper layers such as UDP/TCP)
+
+Once the PE nodes receives the IP packets, it may apply infer the conetext of the 5G E2E netweork slice and then apply a policy-
+based routing (PBR) to the packet to map the traffic of specific 5G
 E2E network slice to the corresponding IETF network slices in the
 provider network.  The details of this solution is beyond scope of
 this draft.
 
 ~~~
          <-------------------- INS1 ------------------->
+
                     PBR        INS1        PBR
              enforcement    realization    enforcement
                      |          |           |
@@ -1074,21 +1097,22 @@ this draft.
     Legend:
       O  SDP ((N3 interface)
       +  Access points of IP/MPLS Services when PBR is enforced
-      === IP/MPLS service
+      === IP/MPLS realizatiohn of the IETF network slice
 ~~~
 {: #Figure12 title="Policy Based Routing (PBR) based IETF Network Slice Mapping"}
 
 ### Mapping based on UDP Source Port
-This section provides an optional solution for mapping the 3GPP E2E
+This section provides another solution for mapping the 5G E2E
 network slice traffic to IETF network slices.  In some deployments of
-the 3GPP E2E network slices, it might be possible for PE nodes to
+the 5G E2E network slices, it might be possible for PE nodes to
 infer the identification of the 3GPP E2E network slice based on the
 information of the GTP tunnels.  As shown in {{FigureA13}}, the source
 UDP port of the data packet may be used to infer the identification
-of 3GPP network slices.  In this case, a mapping table between the
+of 5G E2E network slices.  In this case, a mapping table between the
 identification of 5G network slice and the source UDP port needs to
-be maintained by network functions CU, UPF and the PE nodes.  The
-details of this solution is described in {{draft-ietf-dmm-tn-aware-mobility}}.
+be maintained by network functions CU, UPF and the PE nodes.  
+
+The details of this solution is described in {{draft-ietf-dmm-tn-aware-mobility}}.
 
 ~~~
         <-------------------- INS1 ------------------->
