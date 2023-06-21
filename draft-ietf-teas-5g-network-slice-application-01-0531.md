@@ -1846,7 +1846,7 @@ and IETF Network Slice model enrichments:
    -  TopSliceSubnetProfile (section 6.3.24 in {{TS-28.541}})
 
 *  For the qosProfile attribute, the NRM which applies is
-   EP_Transport (detailed in section 6.3.17 in {{TS-28.541}})
+   EP_Transport (detailed in section 6.3.18 in {{TS-28.541}})
 
 # IANA Considerations
 This document makes no request of IANA.
