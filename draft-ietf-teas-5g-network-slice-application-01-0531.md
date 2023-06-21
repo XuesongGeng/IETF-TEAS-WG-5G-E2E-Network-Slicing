@@ -118,6 +118,12 @@ informative:
               title: "A YANG Data Model for the IETF Network Slice Service"
               date: 2023-03-13   
               target: https://datatracker.ietf.org/doc/draft-ietf-teas-ietf-network-slice-nbi-yang/
+              
+   draft-draft-boro-opsawg-teas-attachment-circuit:
+              title: "YANG Data Models for 'Attachment Circuits'-as-a-Service (ACaaS)"
+              date: 2023-05-3   
+              target: https://datatracker.ietf.org/doc/draft-boro-opsawg-teas-attachment-circuit/
+              
    TS-23.501:
               title: "3GPP TS 23.501: System architecture for the 5G System (5GS)"
               date: 2022-03-25
