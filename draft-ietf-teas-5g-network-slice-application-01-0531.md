@@ -505,7 +505,7 @@ This section provides a general procedure of network slice mapping:
   | RAN |---|  PE |-----...-----| PE  |----|  CN  |        Plane
   +-----+   +-----+             +-----+    +------+
 ~~~
-{: #Figure20 title="Relation between IETF and 3GPP Network Slice management"}
+{: #Figure7 title="Relation between IETF and 3GPP Network Slice management"}
 
 1. 3GPP NSMF receives the request from 3GPP CSMF for allocation of a
 network slice instance with certain characteristics.
@@ -637,7 +637,7 @@ ToDo: connect this part of teh document with the examples, adding some sentences
 
         IETF concern
 ~~~
-{: #Figure21 title="conceptual view on 3GPP and TN connectivity meeting points"}
+{: #Figure8 title="conceptual view on 3GPP and TN connectivity meeting points"}
 
 ##  Mapping EP_transport to IETF NS CE endpoints
 The 3GPP Management system provides the EP_Transport IOC to extend
@@ -705,7 +705,7 @@ different potential endpoint positions for an IETF NS.
           Customer       Provider                Provider       Customer
           Edge 1         Edge 1                  Edge 2         Edge 2
 ~~~
-{: #Figure22 title="IETF Network Slice endpoints"}  
+{: #Figure9 title="IETF Network Slice endpoints"}  
 
 The information that is passed to the IETF NSC in terms of endpoints
 is the information relative to the CE side, which is the one known by
@@ -721,12 +721,14 @@ on generic information passed through the IETF Network Slice Service Interface t
 
 ##  5G E2E Network Slice Mapping in Control Plane
 There is no explicit interaction between transport network and AN/CN
-in the control plane, but the S-NSSAI defined in {{TS-23.501}} is treated
+in the 3GPP control plane signalling, but the S-NSSAI defined in {{TS-23.501}} is treated
 as the end-to-end network slice identifier in the control plane of AN
 and CN, which is used in UE registration and PDU session setup.  In
 this draft, it is assumed that there is a correspondence between
 S-NSSAI and the IETF Network Slice service identifier in the
 management plane.
+
+However, edge nodes between transport network and CN/AN may have IETF control plane protocal interactions, for exmaple routing protocols.
 
 ToDo: there is no direct relationship between 3GPP control plane signalling and IETF control plane. 
 Add sentence on this respect to provide some description here (Xuesong).
@@ -761,7 +763,7 @@ plane（taking the IETF network slice between RAN and UPF as an example:
    |UE|- - - -|(R)AN|---------------------------|       UPF      |
    +--+       +-----+                           +----------------+
 ~~~
-{: #Figure23 title="The mapping between 3GPP slice and transport slice"}
+{: #Figure10 title="The mapping between 3GPP slice and transport slice"}
 
 The mapping between 3GPP slice and transport slice in user plane
 could happens in:
@@ -790,9 +792,10 @@ ToDo: to add Figure title.
   |           |   |      +------+  |  +------+------+ | +-----------+ |
   |           |   |      |  L1  |--|--|  L1  |  L1  |-|-|     L1    | |
   +-----------+   +-------------+  |  +-------------+ | +-----------+ |
-       UE              5G-AN       |        UPF       |      UPF      |
+       UE               RAN        |        UPF       |      UPF      |
                                    N3                 N9              N6
 ~~~
+{: #Figure11 title="Packet encapsulation in UE/RAN/UPF"}
 
 The following figure shows the typical encapsulation in N3 interface.
 
@@ -811,6 +814,7 @@ The following figure shows the typical encapsulation in N3 interface.
    |       Ethernet         |
    +------------------------+
 ~~~
+{: #Figure12 title="Typical packet encapsulation in N3 interface "}
 
 ToDo: to add Figure title.
 
@@ -852,7 +856,7 @@ network slice so as to enforce the SLO/SLE policy.
                              -------
 
 ~~~
-{: #FigureA title="Typical IETF Network Slice in 3GPP Network"}
+{: #Figure13 title="Typical IETF Network Slice in 3GPP Network"}
 
 To provide an overview of various mechanisms of mapping 5G E2E
 network slice to IETF network slices, we focus on IETF network slice
@@ -909,7 +913,7 @@ the various mapping methods are identically applicable to both cases (A) and (B)
       *  SDP (N3 interface as CU IP interface)
       O  SDP (N3 as CU loopback interface)
 ~~~
-{: #Figure8 title="Representation of a Typical IETF Network Slice in 3GPP Network"}
+{: #Figure14 title="Representation of a Typical IETF Network Slice in 3GPP Network"}
 
 Various techniques can be used to map the IETF network slice to 5G E2E network slice.
 The section covers the following techniques which can be used for
@@ -970,7 +974,7 @@ Refer to section 4.1 of {{draft-srld-teas-5g-slicing}} for details of this solut
       === IP/MPLS transport service in provider network 
           (i.e., realization of INS1)
 ~~~
-{: #Figure9 title="VLAN hand-off based for IETF Network Slice Realization"}
+{: #Figure15 title="VLAN hand-off based for IETF Network Slice Realization"}
 
 ### Mapping based on MPLS Label or SR-MPLS SID
 This section describes another solution for mapping the 5G E2E
@@ -1006,7 +1010,7 @@ Refer to section 4.3 of {{draft-srld-teas-5g-slicing}} for details of this solut
          * SDP1 and SPD2 (N3 Address)
          === tunnel between SDP1 and SDP2 (MPLS or SR-MPLS)
 ~~~
-{: #Figure10 title=" MPLS label or SR-MPLS SID based IETF Network Slice Mapping"}
+{: #Figure16 title=" MPLS label or SR-MPLS SID based IETF Network Slice Mapping"}
 
 ### Mapping based on SRv6 SID
  This section describes a solution for mapping the 5G  E2E
@@ -1048,7 +1052,7 @@ Refer to section 4.2 of {{draft-srld-teas-5g-slicing}} for details of this solut
          * SDP1 and SPD2 (N3 address)
          === SRv6 tunnel between SDP1 and SDP2
 ~~~
-{: #Figure11 title="SRV6 hand-off based for IETF Network Slice Mapping"}
+{: #Figure17 title="SRV6 hand-off based for IETF Network Slice Mapping"}
 
 ### Mapping based on Policy Based Routing (PBR)
 This section provides a solution for mapping the 3GPP E2E
@@ -1099,7 +1103,7 @@ this draft.
       +  Access points of IP/MPLS Services when PBR is enforced
       === IP/MPLS realizatiohn of the IETF network slice
 ~~~
-{: #Figure12 title="Policy Based Routing (PBR) based IETF Network Slice Mapping"}
+{: #Figure18 title="Policy Based Routing (PBR) based IETF Network Slice Mapping"}
 
 ### Mapping based on UDP Source Port
 This section provides another solution for mapping the 5G E2E
@@ -1135,7 +1139,7 @@ The details of this solution is described in {{draft-ietf-dmm-tn-aware-mobility}
       *  SDP (N3 address)
          === GTP tunnels in context of IETF network slice INS1
 ~~~
-{: #FigureA13 title="UDP source port soluiton for IETF Network Slice Mapping"}
+{: #Figure19 title="UDP source port soluiton for IETF Network Slice Mapping"}
 
 
 # IETF Network Slice request through IETF Network Slice NBI
@@ -1177,7 +1181,7 @@ The details of this solution is described in {{draft-ietf-dmm-tn-aware-mobility}
                   |          Network Controller(s)           |
                   +------------------------------------------+
 ~~~
-{: #Figure24 title="IETF Network Slice Controller NBI for 5G"}  
+{: #Figure20 title="IETF Network Slice Controller NBI for 5G"}  
 
    As discussed in {{!I-D.ietf-teas-ietf-network-slices}}, the main task of
    the IETF Network Slice Controller is to map abstract IETF network
@@ -1349,7 +1353,7 @@ X: Physical interfaces used for realization of IETF network slice
 S1: L0/L1/L2/L3 services used for realization of IETF network slice
 T1: Tunnels used for realization of IETF network slice
 ~~~
-Figure 11: CE-mode slice realization example between DU and CU-UP – OPTION 1
+Figure 21: CE-mode slice realization example between DU and CU-UP – OPTION 1
 
 
 The 3GPP Management System is expected to handle different IOCs for both DU and CU-UP. For each of those 3GPP network entities, one of
@@ -1393,7 +1397,7 @@ Figure 12 shows the information provided at the DU side corresponding to the int
  | epApplicationRef | EP_F1U CU-UP1  |<--+
  +-----------------------------------+    
 ~~~
-Figure 12: 3GPP IOCs at DU side for the DU1 – CU-UP1 connection
+Figure 22: 3GPP IOCs at DU side for the DU1 – CU-UP1 connection
 
 
 Similarly, at CU-UP side the following objects are provided for setting up the network slice service towards DU, as represented in
@@ -1433,7 +1437,7 @@ Figure 13.
  | epApplicationRef |   EP_F1U DU1   |<--+
  +-----------------------------------+
 ~~~
-Figure 13: 3GPP IOCs at CU-UP side for the DU1 – CU-UP1 connection
+Figure 23: 3GPP IOCs at CU-UP side for the DU1 – CU-UP1 connection
 
 This is the basic information from where deriving the set of parameters feeding the NS NBI model.
 
@@ -1476,7 +1480,7 @@ The resulting mapping is summarized in Figure 14.
             |                                         |
      AC (vlan 100)                               AC (vlan 100)
 ~~~
-Figure 14: CE-mode slice realization example between DU and CU-UP with values
+Figure 24: CE-mode slice realization example between DU and CU-UP with values
 
 Further parameters can be filled in the NS NBI YANG model from the information provided. For instance, since there is one single pair
 of EP_Transport objects, one on each end of the intended slice service, the connectivity construct can be requested as p2p. Since the
@@ -1645,7 +1649,7 @@ network slice service
 network slice service
   T1: Tunnels used for realization of IETF network slice service
 ~~~
-Figure 15: PE-mode slice realization – OPTION 2
+Figure 25: PE-mode slice realization – OPTION 2
 
 The resulting mapping is summarized in Figure 16.
 
@@ -1671,7 +1675,7 @@ The resulting mapping is summarized in Figure 16.
                |                                        |    
           AC (vlan 100)                            AC (vlan 100)
 ~~~
-Figure 16: PE-mode slice realization – OPTION 2
+Figure 26: PE-mode slice realization – OPTION 2
 
 From NBI YANG: “The IETF network slice controller (NSC) uses 'node-id' (PE device ID), 'attachment circuit' ( ACs ) to map SDPs to the
 customer-facing ports on the PEs”
@@ -1934,7 +1938,7 @@ represents F1-U slices with traffic between 3GPP (or ORAN) DU and
              +-------------------------------------+
 
 ~~~
-{: #Figure15 title="Slicing example realization between 3GPP subsystems and TN on the NgU/N3 interface"}
+{: #Figure27 title="Slicing example realization between 3GPP subsystems and TN on the NgU/N3 interface"}
 
 ~~~
              +----------------------------------+
@@ -1970,7 +1974,7 @@ represents F1-U slices with traffic between 3GPP (or ORAN) DU and
           |     e.g. GTP-U, IPSec endpoint      |
           +-------------------------------------+
 ~~~
-{: #Figure16 title="Slicing example realization between 3GPP subsystems and TN on the F1-U interface"}
+{: #Figure28 title="Slicing example realization between 3GPP subsystems and TN on the F1-U interface"}
 
 For the transport (i.e., connectivity) related part of a network
 slice, the key focus is on the EP_Transport IOC.  Instances of this
@@ -2029,7 +2033,7 @@ the endpoint connectivity.
   |EP_NgU link to UPF#1 | |  port name = Gi1/1  |
   +---------------------+ +---------------------+
 ~~~
-{: #Figure17 title="Example of 3GPP EP_Transport IOC TS-28.541 parameters with correlation to IETF"}
+{: #Figure29 title="Example of 3GPP EP_Transport IOC TS-28.541 parameters with correlation to IETF"}
 
 Furthermore, that same parameters should be leveraged for
 constituting the connectivity construct allowing endpoint
@@ -2051,7 +2055,7 @@ represents this relationship between 3GPP and IETF parameters.
  EP_NgU/N3, link between (O)-CU-UP and UPF
  F1-U, link between (O)-DU and (O)-CU-UP
 ~~~
-{: #Figure18 title="Relationships of the 3GPP parameters with the IETF parameters"}
+{: #Figure30 title="Relationships of the 3GPP parameters with the IETF parameters"}
 
    Leveraging on the EP_Transport information, the IETF NSC should be
    instructed through its NBI on performing the slice connection.  {{Figure19}}
@@ -2094,7 +2098,7 @@ represents this relationship between 3GPP and IETF parameters.
                                    '                +-----------------+|
                                                     +------------------+
 ~~~
-{: #Figure19 title="Example of CU-UP Slice in the 3GPP domain using an IETF Network Slice service"}
+{: #Figure31 title="Example of CU-UP Slice in the 3GPP domain using an IETF Network Slice service"}
 
 From the perspective of IETF Network Slice realization, some of these
    options could be realized in a straightforward manner while other
@@ -2132,7 +2136,7 @@ From the perspective of IETF Network Slice realization, some of these
     |    slices     |                    per slice                     |
     +---------------+--------------------------------------------------+
 ~~~
-{: #Figure19_1 title="Variations of Slice implementation options"}
+{: #Figure32 title="Variations of Slice implementation options"}
 
 From the perspective of IETF Network Slice realization, some of these
    options could be realized in a straightforward manner while other
@@ -2151,6 +2155,8 @@ plane:
 +--+       +-----+                           +----------------+
  |<----AN NS---->|<----------TN NS---------->|<----CN NS----->|
 ~~~
+{: #Figure33 title="End-to-end network slice in data plane"}
+
 The mapping between 3GPP slice and transport slice in user plane
 could happens in:
 
@@ -2183,6 +2189,8 @@ network
        UE              5G-AN       |        UPF       |      UPF      |
                                    N3                 N9              N6
 ~~~
+{: #Figure34 title="User plane protocol stack in end-to-end 5G system"}
+
 The following figure shows the typical encapsulation in N3 interface.
 
 ~~~
@@ -2200,6 +2208,8 @@ The following figure shows the typical encapsulation in N3 interface.
    |       Ethernet         |
    +------------------------+
 ~~~
+{: #Figure35 title="Typical encapsulation in N3 interface"}
+
 ## Layer 3 and Layer 2 Encapsulations
    If the encapsulation above IP layer is not visible to Transport
    Network, it is not able to be used for network slice interworking
@@ -2222,6 +2232,8 @@ The following figure shows the typical encapsulation in N3 interface.
    |       Ethernet         |
    +------------------------+
 ~~~
+{: #Figure36 title="IP header for network slice interworking "}
+
 The following field in IP header and Ethernet header could be considered:
 
    IP Header:
@@ -2279,6 +2291,8 @@ The following field in IP header and Ethernet header could be considered:
    |       Ethernet         |
    +------------------------+
 ~~~
+{: #Figure37 title="MPLS label for network slice interworking "}
+
 A specified MPLS label could be used to as a IETF Network Slice
 Interworking ID.
 
@@ -2301,6 +2315,8 @@ If the AN or CN could support SRv6, the protocol stack is as follows:
    |       Ethernet         |
    +------------------------+
 ~~~
+{: #Figure38 title="SRH for network slice interworking "}
+
 The following field could be considered to identify a network slice:
 SRH:
 
@@ -2330,6 +2346,8 @@ interworking between AN or CN and TN.
    |       Ethernet         |
    +------------------------+
 ~~~
+{: #Figure39 title="UDP Header for network slice interworking "}
+
 The following field in UDP header could be considered:
 
    UDP Header:
@@ -2383,7 +2401,7 @@ described in 7.2.1 to 7.2.5 in the provider network PE1 and PE2.
          === Mapping of INS1 on Provider Network PE nodes
          ... Mapping of INS1 in data centers
 ~~~
-{: #Figure14 title="VNF Consideration for IETF Network Slice Mapping"}
+{: #Figure40 title="VNF Consideration for IETF Network Slice Mapping"}
 
 #  Summary
 
