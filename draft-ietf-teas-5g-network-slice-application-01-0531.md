@@ -1797,9 +1797,20 @@ IP address in EP_Transport, redundant, can be removed */
 }
 ~~~
 
-**TODO**
-Example of the AC-draft 
+## Example according to PE-mode with Meeting Point extension of AC-Draft (OPTION 3)
+This example is based on the Option 2 when SDP is located on the PE element and utilizing the same approach for Data Model of the Network Slice, but "attachment-circuits" section of the model is refering to the IDs of AC's Data Models from the AC draft {{!draft-boro-opsawg-teas-common-ac}}
 
+As the {{!I-D.ietf-teas-ietf-network-slices}} has flexebility of Network-Specific abstraction, a need for more attention to connectivity parameters was identified during collaboration activity in O-RAN Alliance Working Group 9 between 3GPP SA5 representatives and IETF contributors. 
+
+AC-draft Data Model is used as an extension of the NS NBI YANG model for a purpose to capture and reflect IETF PE connectivity to 3GPP subsystem parameters such as:
+- physical parameters of the bearer, captured in "ietf-bearer-svc" YAND Module of {{!draft-boro-opsawg-teas-attachment-circuit}}, contains the physical connectivity parameters the link is utilizing, site location, (3GPP) device information, the IETF PE is connected to, and administrative operational parameters as status and activation time constraints 
+- logical connectiviy parameters 
+
+3GPP NRM {{TS 28.541}} Clause 6.3.35	LogicalInterfaceInfo represents 3GPP IOC with TN-related Network Slice parameters of 3GPP subsytem interpreted in this example (option 3) as CE network configuration of current model and may be referenced as a 'peer-sap-id' remote endpoint of the attachment circuit with parameters as 'nf-termination-ip' and 'nf-termination-vlan', see more SAP on {{!I-D.ietf-opsawg-sap}}.
+
+3GPP NRM {{TS 28.541}} 6.3	ConnectionPointInfo represents 3GPP IOC with link to external data model in IETF {{!draft-boro-opsawg-teas-attachment-circuit}} in order to link the corresponding 3GPP subsystem TN-related Network Slice End Point (Clause 6.3.18 EP_Transport) to NS NBI YANG Data Model of the Network Slice with AC extension, referenced in the "attachment-circuits" grouping of the model. 
+
+The following example explains the concept of such construct and relationsip with 3GPP NRM. 
 
 # Gap Analysis
 The way in which 3GPP is characterizing the slice endpoint (i.e.,
