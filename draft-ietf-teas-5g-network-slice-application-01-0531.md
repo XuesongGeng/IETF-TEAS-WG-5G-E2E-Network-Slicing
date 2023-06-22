@@ -129,7 +129,7 @@ informative:
               date: 2022-03-25
               target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
    TS-28.541:
-              title: "3GPP TS 28.541 Management and orchestration; 5G Network Resource Model (NRM); Stage 2 and stage 3"
+              title: "3GPP TS-28.541 Management and orchestration; 5G Network Resource Model (NRM); Stage 2 and stage 3"
               date: 2019-06-07
               target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3400
    TS-28.530:
@@ -152,6 +152,10 @@ informative:
               title: "NG-RAN; F1 general aspects and principles"
               date: 2022-03-25
               target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3257
+   TS-29.571:
+              title: "5G System; Common Data Types for Service Based Interfaces; Stage 3"
+              date: 2023-03-29
+              target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3347
    GST:
               title: "GSMA Generic Network Slice Template"
               date: 2023-01-27
@@ -1798,19 +1802,199 @@ IP address in EP_Transport, redundant, can be removed */
 ~~~
 
 ## Example according to PE-mode with Meeting Point extension of AC-Draft (OPTION 3)
-This example is based on the Option 2 when SDP is located on the PE element and utilizing the same approach for Data Model of the Network Slice, but "attachment-circuits" section of the model is refering to the IDs of AC's Data Models from the AC draft {{!draft-boro-opsawg-teas-common-ac}}
+This example is based on the Option 2 when SDP is located on the PE element and utilizing the same approach for Data Model of the Network Slice, but "attachment-circuits" section of the model is refering to the IDs of AC's Data Models from the AC draft {{!draft-boro-opsawg-teas-attachment-circuit}}
+
+3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo represents 3GPP IOC with TN-related parameters of 3GPP subsytem interpreted in this example (option 3) as CE network configuration of current model and may be referenced as a 'peer-sap-id' remote endpoint of the attachment circuit with parameters as 'nf-termination-ip' and 'nf-termination-vlan', see more SAP on {{!I-D.ietf-opsawg-sap}}; and parameters related to the physical connection and associated with Bearer Service "ietf-ac-svc:attachement-circuits:ietf-bearer-svc"
+
+3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo represents 3GPP IOC with link to external data model in IETF {{!draft-boro-opsawg-teas-attachment-circuit}} in order to link the corresponding 3GPP subsystem Transport Network-related slice Meeting Point (Clause 6.3.18 EP_Transport) to IETF Network Slice attachment circuit. 
 
 As the {{!I-D.ietf-teas-ietf-network-slices}} has flexebility of Network-Specific abstraction, a need for more attention to connectivity parameters was identified during collaboration activity in O-RAN Alliance Working Group 9 between 3GPP SA5 representatives and IETF contributors. 
 
 AC-draft Data Model is used as an extension of the NS NBI YANG model for a purpose to capture and reflect IETF PE connectivity to 3GPP subsystem parameters such as:
 - physical parameters of the bearer, captured in "ietf-bearer-svc" YAND Module of {{!draft-boro-opsawg-teas-attachment-circuit}}, contains the physical connectivity parameters the link is utilizing, site location, (3GPP) device information, the IETF PE is connected to, and administrative operational parameters as status and activation time constraints 
-- logical connectiviy parameters 
+- logical connectiviy parameters: e.g VLAN, MPLS, Segment, IPV4, IPV6
+- routing protocols
 
-3GPP NRM {{TS 28.541}} Clause 6.3.35	LogicalInterfaceInfo represents 3GPP IOC with TN-related Network Slice parameters of 3GPP subsytem interpreted in this example (option 3) as CE network configuration of current model and may be referenced as a 'peer-sap-id' remote endpoint of the attachment circuit with parameters as 'nf-termination-ip' and 'nf-termination-vlan', see more SAP on {{!I-D.ietf-opsawg-sap}}.
+While 3GPP NRM Rel 17 {{TS-28.541}} Clause 6.3.18 EP_Transport Attribute "nextHopInfoList" from Clause 6.3.18.2 is associated with "ietf-network-slice-service:network-slice-services:slice-service:sdp:sdp-ip" value, in 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.18 EP_Transport Attribute list no longer contains IP address of TN element, but a link to IETF meeting point with connectionPointId value of "ietf-ac-svc:attachement-circuits:ac:name".
 
-3GPP NRM {{TS 28.541}} 6.3	ConnectionPointInfo represents 3GPP IOC with link to external data model in IETF {{!draft-boro-opsawg-teas-attachment-circuit}} in order to link the corresponding 3GPP subsystem TN-related Network Slice End Point (Clause 6.3.18 EP_Transport) to NS NBI YANG Data Model of the Network Slice with AC extension, referenced in the "attachment-circuits" grouping of the model. 
+Note: Possible values of Attribute, specifyng the type of the connection point identifier "connectionPointIdType" are VLAN, MPLS, Segment, IPV4, IPV6, Attachment Circuit (AC). In current exmanple Option 3 "Attachment Circuit (AC)" is used.
 
-The following example explains the concept of such construct and relationsip with 3GPP NRM. 
+The following Attributes mapping is assumed in this example:
+
+~~~
+---DU1---
+3GPP NRM {{TS-28.541}} Clause 6.3.18 EP_Transport
+         ipAddress: '1.1.1.1/24'
+         localLogicalInterfaceInfo: "DU1_LogicalInterfaceInfo"
+         qosProfile: '5QI100'
+         connectionPointRefList: "DU1_Meeting_point"
+3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "DU1_LogicalInterfaceInfo"
+         logicalInterfaceType: 'VLAN'
+         logicalInterfaceId: {
+         routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type RouteInformation
+         systemName: 'DU1'
+         portName: 'XE'
+         vlanID: '100'
+         routingProtocol: 'Static'
+
+3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo: "DU1_Meeting_point"
+         connectionPointId: 'ac01-DU1'
+         connectionPointIdType: 'Attachment_Circuit'
+
+---CU-UP---
+3GPP NRM {{TS-28.541}} Clause 6.3.18 EP_Transport
+         ipAddress: '100.1.1.1/24'
+         localLogicalInterfaceInfo: "CU-UP1_LogicalInterfaceInfo"
+         qosProfile: '5QI100'
+         connectionPointRefList: "CU-UP1_Meeting_point"
+         
+3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "CU-UP1_LogicalInterfaceInfo"
+         logicalInterfaceType: 'VLAN'
+         logicalInterfaceId: {
+         routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type RouteInformation
+         systemName: 'CU-UP'
+         portName: 'XE'
+         vlanID: '100'
+         routingProtocol: 'Static'
+
+3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo: "CU-UP1_Meeting_point"
+         connectionPointId: 'ac01-CU-UP1'
+         connectionPointIdType: 'Attachment_Circuit'
+
+{
+  "data": {
+    "ietf-network-slice-service:network-slice-services": {
+      "slo-sle-templates": {
+        "slo-sle-template": [
+          {
+            "id": "5QI100", /* QoS profile  as in EP_Transport*/
+            "template-description": "5QI100 description"
+          },
+        ]
+      },
+      "slice-service": [
+        {
+          "service-id": "5GSliceMapping-PE-mode",
+          "service-description": "example 5G Slice mapping
+following PE mode",
+          "slo-sle-template": "5QI100", /* QoS profile  as
+in EP_Transport*/
+          "status": "active"
+          "sdps": {
+            "sdp": [
+              {
+                "sdp-id": "01",
+                "node-id": "DU1",
+                "ietf-ac-glue:ac-ref": [
+                 "ac01-DU1"
+                 ]         
+                "status": "active"                
+              {
+                "sdp-id": "02",
+                "node-id": "CU-UP1",
+                "ietf-ac-glue:ac-ref": [
+                 "ac01-DU1"
+                 ]         
+                "status": "active" 
+              },
+              ]
+              },
+          },
+          "connection-groups": {
+            "connection-group": [
+              {
+                "connection-group-id": "DU-CU",
+                "connectivity-construct": [
+                  {
+                    "cc-id": 1,
+                    "a2a-sdp": [ /* not available */
+                      {
+                        "sdp-id": "01"
+                      },
+                      {
+                        "sdp-id": "02"
+                      },
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+"ietf-ac-svc:attachement-circuits": {
+  "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "ac01-DU1",
+           "description": "meeting point DU1-PE1",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "cvlan-id": 100
+               }
+             },
+             "bearer-reference": "line-156"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "local-address": "1.1.1.254",
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "1.1.1.1"
+                 }
+               ]
+             },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:direct-routing"
+               }
+             ]
+           }
+           "name": "ac01-CU-UP1",
+           "description": "meeting point CU-UP1-PE2",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "cvlan-id": 100
+               }
+             },
+             "bearer-reference": "line-345"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "local-address": "100.1.1.254",
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "100.1.1.1"
+                 }
+               ]
+             },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:direct-routing"
+               }
+             ]
+           }     
+         }
+       }
+    }
+  }
+}
+
+~~~
 
 # Gap Analysis
 The way in which 3GPP is characterizing the slice endpoint (i.e.,
@@ -1925,7 +2109,7 @@ represents F1-U slices with traffic between 3GPP (or ORAN) DU and
 ~~~
              +----------------------------------+
              |      Slices in 3GPP domain       |
-             |  Model defined in IOC TS 28.541  |
+             |  Model defined in IOC TS-28.541  |
              |          NgU/N3 slices           |
              +----+--------------------------+--+
 +-----------------|+                         |
@@ -1960,7 +2144,7 @@ represents F1-U slices with traffic between 3GPP (or ORAN) DU and
 ~~~
              +----------------------------------+
              |      Slices in 3GPP domain       |
-             |  Model defined in IOC TS 28.541  |
+             |  Model defined in IOC TS-28.541  |
              |            F1-U slices           |
              +-+-------------------------+------+
 +--------------|+                       +|-----------------+
@@ -2082,7 +2266,7 @@ represents this relationship between 3GPP and IETF parameters.
 
 ~~~
      Slices in 3GPP domain                         Slices in 3GPP domain
-  Model defined in IOC TS 28.541          Model defined in IOC TS 28.541
+  Model defined in IOC TS-28.541          Model defined in IOC TS-28.541
 
 +------------------+                                +------------------+
 |3GPP CU-UP / ORAN |                                |   3GPP UPF #1    |
