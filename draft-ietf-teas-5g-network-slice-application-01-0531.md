@@ -63,7 +63,7 @@ contributor:
  -
     fullname: Shunsuke Homma
     organization: NTT
-    email: jefftant.ietf@gmail.com
+    email: shunsuke.homma.ietf@gmail.com
     street: NTT 3-9-11, Midori-cho Musashino-shi,
     city: Tokyo 180-8585
     country: Japan
