@@ -1677,7 +1677,7 @@ The resulting mapping is summarized in Figure 16.
     +-----+    |     | PE1|==================| PE2|          +-----+
     |     |----------X    |                  |    |     |    |     |
     |     |    |     |    |                  |    X----------|     |
-    |     |----------X    |                  |    |     |    |     |
+    |     |    |     |    |                  |    |     |    |     |
     +-----+    |     |    |==================|    |     |    +-----+
                |     +----+                  +----+     |
     Customer   |     Provider                Provider   |    Customer
