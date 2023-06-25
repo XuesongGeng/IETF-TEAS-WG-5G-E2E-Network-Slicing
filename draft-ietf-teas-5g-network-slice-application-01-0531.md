@@ -2059,7 +2059,7 @@ This document makes no request of IANA.
 
 # Evolution Considerations
 **TODO**
-- add topics of AC
+- add topics of AC **done 23 Jun 2023. Ivan**
 - add topics of 3GPP evolution to confiderated data model 
 
 # Acknowledgments
