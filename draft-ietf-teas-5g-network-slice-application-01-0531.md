@@ -1852,7 +1852,7 @@ The following Attributes mapping is assumed in this example:
          logicalInterfaceType: 'VLAN'
          logicalInterfaceId: {
          routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type RouteInformation
-         systemName: 'CU-UP'
+         systemName: 'CU-UP-1'
          portName: 'XE'
          vlanID: '100'
          routingProtocol: 'Static'
