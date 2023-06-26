@@ -156,6 +156,10 @@ informative:
               title: "5G System; Common Data Types for Service Based Interfaces; Stage 3"
               date: 2023-03-29
               target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3347
+   TS-28.623:
+              title: "Generic Network Resource Model (NRM); Integration Reference Point (IRP); Solution Set (SS) definitions"
+              date: 2023-06-29
+              target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=1542
    GST:
               title: "GSMA Generic Network Slice Template"
               date: 2023-01-27
