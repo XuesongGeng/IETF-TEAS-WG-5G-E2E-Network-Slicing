@@ -1780,7 +1780,7 @@ IP address in EP_Transport, redundant, can be removed */
               {
                 "connection-group-id": "DU-CU",
                 "connectivity-type": "ietf-vpn-common:any-to-any",
-** Note: there is a hint from NRM on {{TS-28.541}} Clause 4.3.11, 4.3.13, 5.3.20 relationsip between 3GPP elements on the logical link connection with attributes localAddress and remoteAddress. This information may be correlated with the connectivity and analyzed to make a decision on the connectivity type.
+** Note: there is a hint from NRM on {{TS-28.541}} Clause 4.3.11, 4.3.13, 5.3.20 relationsip between 3GPP elements on the logical link connection with attributes localAddress and remoteAddress. This information may be correlated with the connectivity and analyzed to make a decision on the connectivity type.**
                 "connectivity-construct": [
                   {
                     "cc-id": 1,
@@ -1822,6 +1822,31 @@ While 3GPP NRM Rel 17 {{TS-28.541}} Clause 6.3.18 EP_Transport Attribute "nextHo
 
 Note: Possible values of Attribute, specifyng the type of the connection point identifier "connectionPointIdType" are VLAN, MPLS, Segment, IPV4, IPV6, Attachment Circuit (AC). In current exmanple Option 3 "Attachment Circuit (AC)" is used.
 
+In the figure {{Figure-AC}} is captured Transport - related parameters
+
+~~~
+              SDP1                                     SDP2
+       (With PE1 parameters)                       (with PE2 parameters)
+          (1.1.1.254)                             (100.1.1.254)                               
+               o<--------- IETF Network Slice 1 ------->o
+               +     |                            |     +
+               +     |<----------- S1 ----------->|     +
+               +     |                            |     +
+               +     |    |<------ T1 ------>|    |     +
+                 +   v    v                  v    v   +
+  (1.1.1.1)        + +----+                  +----+ +      (100.1.1.1)
+    +-----+    |     | PE1|==================| PE2|          +------+
+    |     |----------X    |                  |    |     |    |      |
+    | DU1 |    |     |    |                  |    X----------|CU-UP1|
+    |     |    |     |    |                  |    |     |    |      |
+    +-----+    |     |    |==================|    |     |    +------+
+               |     +----+                  +----+     |
+    Customer   |     Provider                Provider   |    Customer
+    Edge 1     |     Edge 1                  Edge 2     |     Edge 2
+               |                                        |    
+          AC-ID (vlan 100)                          AC-ID (vlan 100)
+~~~
+Figure 26: PE-mode slice realization – OPTION 2
 The following Attributes mapping is assumed in this example:
 
 ~~~
@@ -1840,8 +1865,8 @@ The following Attributes mapping is assumed in this example:
          vlanID: '100'
          routingProtocol: 'Static'
 
-** Note: LogicalInterfaceInfo.routingProtocol has Allowed values:  RIP, IGMP, OSPF, EGP, EIGRP, BGP, IS-IS.
-** Identified gap: No Static or Direct_connect value is available.
+** Note: LogicalInterfaceInfo.routingProtocol has Allowed values:  RIP, IGMP, OSPF, EGP, EIGRP, BGP, IS-IS.**
+** Identified gap: No Static or Direct_connect value is available.**
 
 3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo: "DU1_Meeting_point"
          connectionPointId: 'ac01-DU1'
@@ -1849,7 +1874,11 @@ The following Attributes mapping is assumed in this example:
 
 ** Note: connectionPointIdType has Allowed values: VLAN, MPLS, Segment, IPV4, IPV6, Attachment Circuit (AC) with multiplicity: 1
 
----CU-UP-1---
+3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement
+         locationName: 'Site1.AAA1.ZIP1"
+** Note: The physical location (e.g. an address) of an 3GPP entity. It may contain no information to support the case where the derivative of ManagedElement needs to represent a distributed multi-location NE."**
+
+---CU-UP1---
 3GPP NRM {{TS-28.541}} Clause 6.3.18 EP_Transport
          ipAddress: '100.1.1.1/24'
          localLogicalInterfaceInfo: "CU-UP1_LogicalInterfaceInfo"
@@ -1901,7 +1930,7 @@ in EP_Transport*/
                 "sdp-id": "02",
                 "node-id": "CU-UP1",
                 "ietf-ac-glue:ac-ref": [
-                 "ac01-DU1"
+                 "ac01-CU-UP1"
                  ]         
                 "status": "active" 
               },
