@@ -1863,7 +1863,7 @@ The following Attributes mapping is assumed in this example:
 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "DU1_LogicalInterfaceInfo"
          logicalInterfaceType: 'VLAN'
          logicalInterfaceId: {
-         routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type RouteInformation
+         routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type "RouteInformation"
          systemName: 'DU1'
          portName: 'XE'
          vlanID: '100'
@@ -1879,8 +1879,8 @@ The following Attributes mapping is assumed in this example:
 ** Note: connectionPointIdType has Allowed values: VLAN, MPLS, Segment, IPV4, IPV6, Attachment Circuit (AC) with multiplicity: 1
 
 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement
-         id: 'DU1"
-         locationName: 'Site1.AAA1.ZIP1"
+         id: 'DU1'
+         locationName: 'Site1.AAA1.ZIP1'
 ** Note: The physical location (e.g. an address) of an 3GPP entity. It may contain no information to support the case where the derivative of ManagedElement needs to represent a distributed multi-location NE."**
 
 ---CU-UP1---
@@ -1893,7 +1893,7 @@ The following Attributes mapping is assumed in this example:
 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "CU-UP1_LogicalInterfaceInfo"
          logicalInterfaceType: 'VLAN'
          logicalInterfaceId: {
-         routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type RouteInformation
+         routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type "RouteInformation"
          systemName: 'CU-UP1'
          portName: 'XE'
          vlanID: '100'
@@ -1904,9 +1904,9 @@ The following Attributes mapping is assumed in this example:
          connectionPointIdType: 'Attachment_Circuit'
 
 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement
-         id: 'CU-UP1"
-         locationName: 'Site1.AAA2.ZIP2"
-
+         id: 'CU-UP1'
+         locationName: 'Site1.AAA2.ZIP2'
+----
 {
   "data": {
     "ietf-network-slice-service:network-slice-services": {
@@ -2047,38 +2047,22 @@ in EP_Transport*/
            "customer-point": {
              "identified-by": "3GPP_ManagedFunction"
                "device": [
-                 "device-id": '   string
-         |  |  +--rw location
-         |  |     +--rw address?        string
-         |  |     +--rw postal-code?    string
-         |  |     +--rw state?          string
-         |  |     +--rw city?           string
-         |  |     +--rw country-code?   string
-         |  +--rw site
-         |  |  +--rw site-id?    string
-         |  |  +--rw location
-         |  |     +--rw address?        string
-         |  |     +--rw postal-code?    string
-         |  |     +--rw state?          string
-         |  |     +--rw city?           string
-         |  |     +--rw country-code?   string
-         |  +--rw custom-id?       string
-         +--rw requested-type?     identityref
-         +--ro bearer-reference?   string {vpn-common:bearer-reference}?
-         +--rw requested-start?    yang:date-and-time
-         +--rw requested-stop?     yang:date-and-time
-         +--ro actual-start?       yang:date-and-time
-         +--ro actual-stop?        yang:date-and-time
-         +--rw status
-            +--rw admin-status
-            |  +--rw status?        identityref
-            |  +--rw last-change?   yang:date-and-time
-            +--ro oper-status
-               +--ro status?        identityref
-               +--ro last-change?   yang:date-and-time
-       }
+                 "device-id": "DU1"
+** Either 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "DU1_LogicalInterfaceInfo".
+systemName or 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.id **
+                 "site": {
+                   "site-id": "Site1.AAA1.ZIP1"
+** 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.DU1.locationName**
+           }
+          ]
+         }
+        }
+       ]
+      }
+     }
     }
-  }
+  ]
+ }
 }
 
 ~~~
