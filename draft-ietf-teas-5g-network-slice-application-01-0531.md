@@ -1718,7 +1718,7 @@ in EP_Transport*/
             "sdp": [
               {
                 "sdp-id": "01",
-                "node-id": "DU1", /* not available */
+                "node-id": "PE1", 
                 "sdp-ip": "1.1.1.254", /* NextHopInfo IP
 address in EP_Transport */
                 "service-match-criteria": {
@@ -1746,7 +1746,7 @@ HopInfo IP address in EP_Transport, redundant, can be removed */
               },
               {
                 "sdp-id": "02",
-                "node-id": "CU-UP1",
+                "node-id": "PE2",
                 "sdp-ip": "100.1.1.254", /* NextHopInfo IP address
 in EP_Transport */
                 "service-match-criteria": {
@@ -1875,6 +1875,7 @@ The following Attributes mapping is assumed in this example:
 ** Note: connectionPointIdType has Allowed values: VLAN, MPLS, Segment, IPV4, IPV6, Attachment Circuit (AC) with multiplicity: 1
 
 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement
+         id: 'DU1"
          locationName: 'Site1.AAA1.ZIP1"
 ** Note: The physical location (e.g. an address) of an 3GPP entity. It may contain no information to support the case where the derivative of ManagedElement needs to represent a distributed multi-location NE."**
 
@@ -1889,7 +1890,7 @@ The following Attributes mapping is assumed in this example:
          logicalInterfaceType: 'VLAN'
          logicalInterfaceId: {
          routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type RouteInformation
-         systemName: 'CU-UP-1'
+         systemName: 'CU-UP1'
          portName: 'XE'
          vlanID: '100'
          routingProtocol: 'Static'
@@ -1897,6 +1898,10 @@ The following Attributes mapping is assumed in this example:
 3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo: "CU-UP1_Meeting_point"
          connectionPointId: 'ac01-CU-UP1'
          connectionPointIdType: 'Attachment_Circuit'
+
+3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement
+         id: 'CU-UP1"
+         locationName: 'Site1.AAA2.ZIP2"
 
 {
   "data": {
@@ -1921,16 +1926,18 @@ in EP_Transport*/
             "sdp": [
               {
                 "sdp-id": "01",
-                "node-id": "DU1",
+                "node-id": "PE1",
                 "ietf-ac-glue:ac-ref": [
-                 "ac01-DU1"
+                 "ac01-DU1" ** 3GPP NRM {{TS-28.541}} DU1.ConnectionPointInfo.
+"DU1_Meeting_point".connectionPointId **
                  ]         
                 "status": "active"                
               {
                 "sdp-id": "02",
-                "node-id": "CU-UP1",
+                "node-id": "PE2",
                 "ietf-ac-glue:ac-ref": [
-                 "ac01-CU-UP1"
+                 "ac01-CU-UP1" **3GPP NRM {{TS-28.541}} CU-UP1.ConnectionPointInfo.
+"CU-UP1_Meeting_point".connectionPointId**
                  ]         
                 "status": "active" 
               },
@@ -1945,7 +1952,7 @@ in EP_Transport*/
                 "connectivity-construct": [
                   {
                     "cc-id": 1,
-                    "a2a-sdp": [ /* not available */
+                    "a2a-sdp": [ 
                       {
                         "sdp-id": "01"
                       },
@@ -1962,8 +1969,7 @@ in EP_Transport*/
       ]
     }
   }
-"ietf-ac-svc:attachement-circuits": {
-  "ietf-ac-svc:attachment-circuits": {
+"ietf-ac-svc:attachment-circuits": {
        "ac": [
          {
            "name": "ac01-DU1",
@@ -1985,6 +1991,7 @@ in EP_Transport*/
                  {
                    "address-id": "1",
                    "customer-address": "1.1.1.1"
+**3GPP NRM {{TS-28.541}} Clause 6.3.18 DU1.EP_Transport.ipAddress**
                  }
                ]
              },
@@ -2015,6 +2022,7 @@ in EP_Transport*/
                  {
                    "address-id": "1",
                    "customer-address": "100.1.1.1"
+**3GPP NRM {{TS-28.541}} Clause 6.3.18 CU-UP1.EP_Transport.ipAddress**
                  }
                ]
              },
@@ -2027,6 +2035,43 @@ in EP_Transport*/
              ]
            }     
          }
+"ietf-ac-svc:ietf-bearer-svc":{
+   "bearers": [
+         {
+           "id": "line-156"
+           "description": "link DU1-PE1"
+           "customer-point": {
+             "identified-by": "3GPP_ManagedFunction"
+               "device": [
+                 "device-id": '   string
+         |  |  +--rw location
+         |  |     +--rw address?        string
+         |  |     +--rw postal-code?    string
+         |  |     +--rw state?          string
+         |  |     +--rw city?           string
+         |  |     +--rw country-code?   string
+         |  +--rw site
+         |  |  +--rw site-id?    string
+         |  |  +--rw location
+         |  |     +--rw address?        string
+         |  |     +--rw postal-code?    string
+         |  |     +--rw state?          string
+         |  |     +--rw city?           string
+         |  |     +--rw country-code?   string
+         |  +--rw custom-id?       string
+         +--rw requested-type?     identityref
+         +--ro bearer-reference?   string {vpn-common:bearer-reference}?
+         +--rw requested-start?    yang:date-and-time
+         +--rw requested-stop?     yang:date-and-time
+         +--ro actual-start?       yang:date-and-time
+         +--ro actual-stop?        yang:date-and-time
+         +--rw status
+            +--rw admin-status
+            |  +--rw status?        identityref
+            |  +--rw last-change?   yang:date-and-time
+            +--ro oper-status
+               +--ro status?        identityref
+               +--ro last-change?   yang:date-and-time
        }
     }
   }
