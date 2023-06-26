@@ -2049,13 +2049,24 @@ in EP_Transport*/
                "device": [
                  "device-id": "DU1"
 ** Either 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "DU1_LogicalInterfaceInfo".
-systemName or 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.id **
+systemName or 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.DU1.id **
                  "site": {
                    "site-id": "Site1.AAA1.ZIP1"
 ** 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.DU1.locationName**
            }
           ]
          }
+           "id": "line-345"
+           "description": "link CU-UP1-PE2"
+           "customer-point": {
+             "identified-by": "3GPP_ManagedFunction"
+               "device": [
+                 "device-id": "CU-UP1"
+** Either 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "CU-UP1_LogicalInterfaceInfo".
+systemName or 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.CU-UP1.id **
+                 "site": {
+                   "site-id": "Site1.AAA2.ZIP2"
+** 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.CU-UP1.locationName**
         }
        ]
       }
