@@ -1872,7 +1872,7 @@ The following Attributes mapping is assumed in this example:
 ** Note: LogicalInterfaceInfo.routingProtocol has Allowed values:  RIP, IGMP, OSPF, EGP, EIGRP, BGP, IS-IS.**
 ** Identified gap: No Static or Direct_connect value is available.**
 
-3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo: "DU1_Meeting_point"
+3GPP NRM {{TS-28.541}} Clause 6.3	ConnectionPointInfo: "DU1_Meeting_point"
          connectionPointId: 'ac01-DU1'
          connectionPointIdType: 'Attachment_Circuit'
 
@@ -1899,7 +1899,7 @@ The following Attributes mapping is assumed in this example:
          vlanID: '100'
          routingProtocol: 'Static'
 
-3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo: "CU-UP1_Meeting_point"
+3GPP NRM {{TS-28.541}} Clause 6.3	ConnectionPointInfo: "CU-UP1_Meeting_point"
          connectionPointId: 'ac01-CU-UP1'
          connectionPointIdType: 'Attachment_Circuit'
 
@@ -1932,8 +1932,8 @@ in EP_Transport*/
                 "sdp-id": "01",
                 "node-id": "PE1",
                 "ietf-ac-glue:ac-ref": [
-                 "ac01-DU1" ** 3GPP NRM {{TS-28.541}} DU1.ConnectionPointInfo.
-"DU1_Meeting_point".connectionPointId **
+                 "ac01-DU1"
+** 3GPP NRM {{TS-28.541}} DU1.ConnectionPointInfo."DU1_Meeting_point".connectionPointId **
                  ]         
                 "status": "active"                
               {
@@ -1977,12 +1977,16 @@ in EP_Transport*/
        "ac": [
          {
            "name": "ac01-DU1",
+** 3GPP NRM {{TS-28.541}} Clause 6.3	ConnectionPointInfo.connectionPointId **
            "description": "meeting point DU1-PE1",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
+** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.logicalInterfaceType **
+         logicalInterfaceType: 'VLAN'
                "dot1q": {
                  "cvlan-id": 100
+** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.vlanID **
                }
              },
              "bearer-reference": "line-156"
@@ -2004,16 +2008,20 @@ in EP_Transport*/
                {
                  "id": "1",
                  "type": "ietf-vpn-common:direct-routing"
+** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.routingProtocol **
                }
              ]
            }
            "name": "ac01-CU-UP1",
+** 3GPP NRM {{TS-28.541}} Clause 6.3	ConnectionPointInfo.connectionPointId **
            "description": "meeting point CU-UP1-PE2",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
+** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.logicalInterfaceType **
                "dot1q": {
                  "cvlan-id": 100
+** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.vlanID **
                }
              },
              "bearer-reference": "line-345"
@@ -2035,6 +2043,7 @@ in EP_Transport*/
                {
                  "id": "1",
                  "type": "ietf-vpn-common:direct-routing"
+** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.routingProtocol **
                }
              ]
            }     
