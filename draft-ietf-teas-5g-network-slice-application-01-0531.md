@@ -1586,6 +1586,7 @@ As such, the NBI YANG model can result in something like:
             "connection-group": [
               {
                 "connection-group-id": "DU-CU",
+                "connectivity-type": "ietf-vpn-common:any-to-any",
                 "connectivity-construct": [
                   {
                     "cc-id": 1,
@@ -1778,10 +1779,12 @@ IP address in EP_Transport, redundant, can be removed */
             "connection-group": [
               {
                 "connection-group-id": "DU-CU",
+                "connectivity-type": "ietf-vpn-common:any-to-any",
+** Note: there is a hint from NRM on {{TS-28.541}} Clause 4.3.11, 4.3.13, 5.3.20 relationsip between 3GPP elements on the logical link connection with attributes localAddress and remoteAddress. This information may be correlated with the connectivity and analyzed to make a decision on the connectivity type.
                 "connectivity-construct": [
                   {
                     "cc-id": 1,
-                    "a2a-sdp": [ /* not available */
+                    "a2a-sdp": [ 
                       {
                         "sdp-id": "01"
                       },
@@ -1837,11 +1840,16 @@ The following Attributes mapping is assumed in this example:
          vlanID: '100'
          routingProtocol: 'Static'
 
+** Note: LogicalInterfaceInfo.routingProtocol has Allowed values:  RIP, IGMP, OSPF, EGP, EIGRP, BGP, IS-IS.
+** Identified gap: No Static or Direct_connect value is available.
+
 3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo: "DU1_Meeting_point"
          connectionPointId: 'ac01-DU1'
          connectionPointIdType: 'Attachment_Circuit'
 
----CU-UP---
+** Note: connectionPointIdType has Allowed values: VLAN, MPLS, Segment, IPV4, IPV6, Attachment Circuit (AC) with multiplicity: 1
+
+---CU-UP-1---
 3GPP NRM {{TS-28.541}} Clause 6.3.18 EP_Transport
          ipAddress: '100.1.1.1/24'
          localLogicalInterfaceInfo: "CU-UP1_LogicalInterfaceInfo"
@@ -1904,6 +1912,7 @@ in EP_Transport*/
             "connection-group": [
               {
                 "connection-group-id": "DU-CU",
+                "connectivity-type": "ietf-vpn-common:any-to-any",
                 "connectivity-construct": [
                   {
                     "cc-id": 1,
