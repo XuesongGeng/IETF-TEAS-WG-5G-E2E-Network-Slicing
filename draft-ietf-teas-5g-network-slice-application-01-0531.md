@@ -607,7 +607,7 @@ NSMF and IETF NSC.
 Then, at the time of provisioning a 3GPP slice, it is required to
 provide slice connectivity constructs by means of IETF network
 slices.  Then it is necessary to bind two different endpoints, as
-depicted in {{Figure21}}:
+depicted in {{Figure8}}:
 
  *  Mapping of EP_Transport (as defined by {{TS-28.541}}) to the endpoint
     at the CE side o f the IETF network slice.  This is necessary
@@ -837,11 +837,11 @@ data plane of network slice mapping.
 
 ## Methods for Mapping between 3GPP E2E network slice and IETF network slice
 Referring to {{Figure2}}, {{Figure3}} and {{Figure4}}, a 5G end-to-end network
-slice might have one or more IETF network slices. {{FigureA}} is a
+slice might have one or more IETF network slices. {{Figure13}} is a
 general representation of any of transport networks in 5G end-to-end
 network slice where the IETF network slice INS_a provides the connectivity
 between network functions NF1 and NF2 to satisfy the specific SLO/
-SLE.  For example, {{FigureA}} could represent IETF network slice INS1 of {{Figure4}}
+SLE.  For example, {{Figure14}} could represent IETF network slice INS1 of {{Figure4}}
 where connectivity needed between network functions CU and UPF or it
 could represent IETF network slice INS4 between network functions DU
 and CU.
@@ -1124,7 +1124,7 @@ This section provides another solution for mapping the 5G E2E
 network slice traffic to IETF network slices.  In some deployments of
 the 5G E2E network slices, it might be possible for PE nodes to
 infer the identification of the 3GPP E2E network slice based on the
-information of the GTP tunnels.  As shown in {{FigureA13}}, the source
+information of the GTP tunnels.  As shown in {{Figure19}}, the source
 UDP port of the data packet may be used to infer the identification
 of 5G E2E network slices.  In this case, a mapping table between the
 identification of 5G network slice and the source UDP port needs to
@@ -1167,7 +1167,7 @@ The details of this solution is described in {{draft-ietf-dmm-tn-aware-mobility}
    optimization of transport Slices in a multi-domain, a multi-
    technology and multi-vendor environment.
 
-   {{Figure24}} shows the NSC and its NBI interface for 5G.  Draft
+   {{Figure20}} shows the NSC and its NBI interface for 5G.  Draft
    {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}} a addresses the service
    yang model of the NSC NBI interface for all network slicing use-
    cases.
@@ -1850,7 +1850,8 @@ In the figure {{Figure-AC}} is captured Transport - related parameters
                |                                        |    
           AC-ID (vlan 100)                          AC-ID (vlan 100)
 ~~~
-Figure 26: PE-mode slice realization – OPTION 2
+{: #Figure-AC PE-mode slice realization – OPTION 2"}
+
 The following Attributes mapping is assumed in this example:
 
 ~~~
