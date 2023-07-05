@@ -203,20 +203,19 @@ network should have thus capability to support multiple IETF
 network slices.  The decision about the number of such IETF network
 slices is deployment specific.
 
-This document addresses the request of IETF Network Slice services
-for 3GPP 5G Network Slices.  The details of IETF network slice realization are out of the scope of this document and addressed in
+This document addresses the request of IETF Network Slice Services
+for 3GPP 5G Network Slices.  The details about the realization of IETF Network Slices are out of the scope of this document and addressed in
 other documents such as {{!I-D.ietf-teas-enhanced-vpn}}
-{{!I-D.ietf-teas-ns-ip-mpls}} {{!I-D.ietf-teas-nrp-scalability}} and
- {{!I-D.srld-teas-5g-slicing}}.
+{{?I-D.ietf-teas-ns-ip-mpls}} {{?I-D.ietf-teas-nrp-scalability}} and
+ {{?I-D.ietf-teas-5g-ns-ip-mpls}}.
 
 # Terminology
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT"
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in th
-document are to be interpreted as described in {{!RFC2119}}.
 
-This document uses the terms defined in
-{{!I-D.ietf-teas-ietf-network-slices}}:
-The following terms abbreviations are used in this document:
+{::boilerplate bcp14-tagged}
+
+This document uses the terms defined in {{!I-D.ietf-teas-ietf-network-slices}}.
+
+The following abbreviations are used in this document:
 
 ~~~
    NSC: IETF Network Slice Controller
@@ -501,7 +500,7 @@ This section provides a general procedure of network slice mapping:
                   |       NSMF      |
                   +-----------------+
        +----------|     S-NSSAI     |----------+
-       |          |(e.g. 011111111) |          |
+       |          |(e.g., 011111111)|          |
        |          +-----------------+          |
        |                   |                   |
        V                   V                   V
@@ -538,7 +537,7 @@ which is out of the scope of this document.
 5. 3GPP NSMF sends a request to CN NSSMF for creation of CN Slice,
 which is out of the scope of this document.
 
-6. 3GPP NSMF sends a request to IETF Network Slice Controller (NSC)
+6. 3GPP NSMF sends a request to an NSC
 (acting as an NSSMF for transport network, from the perspective of
 the 3GPP Management System)) for creation of IETF Network Slice.  The
 request contains attributes such as endpoints (based on the
@@ -546,17 +545,17 @@ information from EP_Transport IOC), required SLA along with other
 IETF network slice attributes.  It also contains mapping informatin
 for IETF Network Slice Interworking Identifier.
 
-7.  IETF NSC realizes the IETF network slice which satisfies the
-requirements of the IETF network slice service requested between the
-specified endpoints (RAN/ CN edge nodes).  It may assign IETF slice
+7.  IETF NSC realizes the IETF Network Slice which satisfies the
+requirements of the IETF Network Slice Service requested between the
+specified endpoints (RAN/CN edge nodes).  It may assign an IETF slice
 ID and send it to 3GPP NSMF.
 
-8. 3GPP NSMF maintains the mapping relationship between S-NSSAI and
-IETF network slice service ID;
+8. The 3GPP NSMF maintains the mapping relationship between S-NSSAI and
+IETF Network Slice Service ID;
 
 9.  When the 3GPP User Equipment (UE) appears, as part of 5G
-signalling, it may request to be connected to specific e2e network
-slice identified by S-NASSI.  Then a GTP tunnel (which is UDP/IP-
+signalling, it may request to be connected to a specific 3GPP Network
+Slice identified by S-NASSI.  Then a GTP tunnel (which is UDP/IP-
 based) will be created.
 
 10.  UE starts sending traffic to AN and the edge of AN encapsulates
@@ -653,7 +652,7 @@ ToDo: connect this part of teh document with the examples, adding some sentences
 ~~~
 {: #Figure8 title="conceptual view on 3GPP and TN connectivity meeting points"}
 
-##  Mapping EP_transport to IETF NS CE endpoints
+##  Mapping EP_transport to IETF NS CE Endpoints
 The 3GPP Management system provides the EP_Transport IOC to extend
 the slice awareness to the transport network.  The EP_Transport IOC
 contains parameters as IP address, additional identifiers (i.e., vlan
@@ -694,7 +693,7 @@ slice boundary.  Finally, the QoS profile, if present, helps to
 determine configurations needed at the PE side to respect the SLOs in
 the connection between CEs slice endpoints.
 
-##  Mapping IETF NS CE to PE endpoints
+##  Mapping IETF NS CE to PE Endpoints
 As described in {{!I-D.ietf-teas-ietf-network-slices}}, there are
 different potential endpoint positions for an IETF NS.
 
@@ -835,7 +834,8 @@ ToDo: to add Figure title.
 There are several options in the encapsulation that could be used in
 data plane of network slice mapping.
 
-## Methods for Mapping between 3GPP E2E network slice and IETF network slice
+## Methods for Mapping Between 3GPP E2E Network Slice and IETF Network Slice
+
 Referring to {{Figure2}}, {{Figure3}} and {{Figure4}}, a 5G end-to-end network
 slice might have one or more IETF network slices. {{Figure13}} is a
 general representation of any of transport networks in 5G end-to-end
@@ -1808,25 +1808,27 @@ IP address in EP_Transport, redundant, can be removed */
 }
 ~~~
 
-## Example according to PE-mode with Meeting Point extension of AC-Draft (OPTION 3)
-This example is based on the Option 2 when SDP is located on the PE element and utilizing the same approach for Data Model of the Network Slice, but "attachment-circuits" section of the model is refering to the IDs of AC's Data Models from the AC draft {{draft-boro-opsawg-teas-attachment-circuit}}
+## Example According to PE-mode with Meeting Point Extension of ACaaS (OPTION 3)
 
-3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo represents 3GPP IOC with TN-related parameters of 3GPP subsytem interpreted in this example (option 3) as CE network configuration of current model and may be referenced as a 'peer-sap-id' remote endpoint of the attachment circuit with parameters as 'nf-termination-ip' and 'nf-termination-vlan', see more SAP on {{!I-D.ietf-opsawg-sap}}; and parameters related to the physical connection and associated with Bearer Service "ietf-ac-svc:attachement-circuits:ietf-bearer-svc"
+This example is based on the Option 2 when SDP is located on the PE and utilizing the same approach for the data model of the Network Slice Service, but "attachment-circuits" section of the model is refering to the identifiers that are created using the data models specified in {{?I-D.boro-opsawg-teas-attachment-circuit}}
 
-3GPP NRM {{TS-28.541}} 6.3	ConnectionPointInfo represents 3GPP IOC with link to external data model in IETF {{draft-boro-opsawg-teas-attachment-circuit}} in order to link the corresponding 3GPP subsystem Transport Network-related slice Meeting Point (Clause 6.3.18 EP_Transport) to IETF Network Slice attachment circuit. 
+3GPP NRM Rel 18 LogicalInterfaceInfo (Section 6.3.35 of {{TS-28.541}}) represents 3GPP IOC with TN-related parameters of the 3GPP subsytem interpreted in this example (Option 3) as CE network configuration of current model and may be referenced as a 'peer-sap-id' remote endpoint of the attachment circuit with parameters as 'nf-termination-ip' and 'nf-termination-vlan' (see more on SAPs at {{!RFC9408}}; and parameters related to the physical connection and associated with Bearer Service "ietf-ac-svc:attachement-circuits:ietf-bearer-svc".
 
-As the {{!I-D.ietf-teas-ietf-network-slices}} has flexebility of Network-Specific abstraction, a need for more attention to connectivity parameters was identified during collaboration activity in O-RAN Alliance Working Group 9 between 3GPP SA5 representatives and IETF contributors. 
+3GPP NRM ConnectionPointInfo (Section 6.3 of {{TS-28.541}}) represents 3GPP IOC with link to the external IETF data model {{?I-D.boro-opsawg-teas-attachment-circuit}} in order to link the corresponding 3GPP subsystem Transport Network-related slice Meeting Point (Clause 6.3.18 of {{TS-28.541}}, EP_Transport) to the IETF Network Slice attachment circuit.
 
-AC-draft Data Model is used as an extension of the NS NBI YANG model for a purpose to capture and reflect IETF PE connectivity to 3GPP subsystem parameters such as:
-- physical parameters of the bearer, captured in "ietf-bearer-svc" YAND Module of {{draft-boro-opsawg-teas-attachment-circuit}}, contains the physical connectivity parameters the link is utilizing, site location, (3GPP) device information, the IETF PE is connected to, and administrative operational parameters as status and activation time constraints 
-- logical connectiviy parameters: e.g VLAN, MPLS, Segment, IPV4, IPV6
-- routing protocols
+As the {{!I-D.ietf-teas-ietf-network-slices}} has flexibility of Network-Specific abstraction, a need for more attention to connectivity parameters was identified during collaboration activity in O-RAN Alliance Working Group 9 between the 3GPP SA5 representatives and IETF contributors.
 
-While 3GPP NRM Rel 17 {{TS-28.541}} Clause 6.3.18 EP_Transport Attribute "nextHopInfoList" from Clause 6.3.18.2 is associated with "ietf-network-slice-service:network-slice-services:slice-service:sdp:sdp-ip" value, in 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.18 EP_Transport Attribute list no longer contains IP address of TN element, but a link to IETF meeting point with connectionPointId value of "ietf-ac-svc:attachement-circuits:ac:name".
+{{?I-D.boro-opsawg-teas-attachment-circuit}} is used jointly to the Network Slice Service YANG model  to capture and reflect IETF PE connectivity to 3GPP subsystem parameters such as:
 
-Note: Possible values of Attribute, specifyng the type of the connection point identifier "connectionPointIdType" are VLAN, MPLS, Segment, IPV4, IPV6, Attachment Circuit (AC). In current exmanple Option 3 "Attachment Circuit (AC)" is used.
+- Physical parameters of the bearer, captured in the "ietf-bearer-svc" YANG Module of {{?I-D.boro-opsawg-teas-attachment-circuit}}, contains the physical connectivity parameters that the link is utilizing, site location, (3GPP) device information, the IETF PE is connected to, and administrative operational parameters as status and activation time constraints.
+- Logical connectiviy parameters: e.g., VLAN, IPv4, and IPv6.
+- Routing protocols
 
-In the figure {{Figure-AC}} is captured Transport - related parameters
+While 3GPP NRM Rel 17 (Section 6.3.18 of {{TS-28.541}})  EP_Transport Attribute "nextHopInfoList" from Clause 6.3.18.2 is associated with "ietf-network-slice-service:network-slice-services:slice-service:sdp:sdp-ip" value, in 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.18 EP_Transport Attribute list no longer contains IP address of TN element, but a link to IETF meeting point with connectionPointId value of "ietf-ac-svc:attachement-circuits:ac:name".
+
+> Note: Possible values of the attribute, specifyng the type of the connection point identifier "connectionPointIdType" are VLAN, MPLS, Segment, IPv4, IPv6, and Attachment Circuit (AC). In current exmanple Option 3 "Attachment Circuit (AC)" is used.
+
+{{Figure-AC}} captures Transport-related parameters.
 
 ~~~
               SDP1                                     SDP2
@@ -1850,9 +1852,9 @@ In the figure {{Figure-AC}} is captured Transport - related parameters
                |                                        |    
           AC-ID (vlan 100)                          AC-ID (vlan 100)
 ~~~
-{: #Figure-AC PE-mode slice realization – OPTION 2"}
+{: #Figure-AC PE-mode Slice Realization – Option 2"}
 
-The following Attributes mapping is assumed in this example:
+The following attributes mapping is assumed in this example:
 
 ~~~
 ---DU1---
@@ -1882,7 +1884,7 @@ The following Attributes mapping is assumed in this example:
 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement
          id: 'DU1'
          locationName: 'Site1.AAA1.ZIP1'
-** Note: The physical location (e.g. an address) of an 3GPP entity. It may contain no information to support the case where the derivative of ManagedElement needs to represent a distributed multi-location NE."**
+** Note: The physical location (e.g., an address) of an 3GPP entity. It may contain no information to support the case where the derivative of ManagedElement needs to represent a distributed multi-location NE."**
 
 ---CU-UP1---
 3GPP NRM {{TS-28.541}} Clause 6.3.18 EP_Transport
@@ -1974,6 +1976,7 @@ in EP_Transport*/
       ]
     }
   }
+
 "ietf-ac-svc:attachment-circuits": {
        "ac": [
          {
@@ -2049,14 +2052,15 @@ in EP_Transport*/
              ]
            }     
          }
+
 "ietf-ac-svc:ietf-bearer-svc":{
    "bearers": [
          {
-           "id": "line-156"
+           "id": "line-156" //Note that bearer-reference is returned in the response
            "description": "link DU1-PE1"
            "customer-point": {
-             "identified-by": "3GPP_ManagedFunction"
-               "device": [
+             "identified-by": "ietf-bearer-svc:site-and-device-id",
+               "device": {
                  "device-id": "DU1"
 ** Either 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "DU1_LogicalInterfaceInfo".
 systemName or 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.DU1.id **
@@ -2064,13 +2068,13 @@ systemName or 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.DU1.id **
                    "site-id": "Site1.AAA1.ZIP1"
 ** 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.DU1.locationName**
            }
-          ]
+          }
          }
            "id": "line-345"
            "description": "link CU-UP1-PE2"
            "customer-point": {
-             "identified-by": "3GPP_ManagedFunction"
-               "device": [
+             "identified-by": "ietf-bearer-svc:site-and-device-id",
+             "device": {
                  "device-id": "CU-UP1"
 ** Either 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "CU-UP1_LogicalInterfaceInfo".
 systemName or 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.CU-UP1.id **
@@ -2078,7 +2082,7 @@ systemName or 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.CU-UP1.id
                    "site-id": "Site1.AAA2.ZIP2"
 ** 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement.CU-UP1.locationName**
         }
-       ]
+       }
       }
      }
     }
