@@ -1865,17 +1865,15 @@ The following attributes mapping is assumed in this example:
          connectionPointRefList: "DU1_Meeting_point"
 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "DU1_LogicalInterfaceInfo"
          logicalInterfaceType: 'VLAN'
-         logicalInterfaceId: {
-         routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type "RouteInformation"
+         logicalInterfaceId: '100'
          systemName: 'DU1'
          portName: 'XE'
-         vlanID: '100'
          routingProtocol: 'Static'
 
 ** Note: LogicalInterfaceInfo.routingProtocol has Allowed values:  RIP, IGMP, OSPF, EGP, EIGRP, BGP, IS-IS.**
 ** Identified gap: No Static or Direct_connect value is available.**
 
-3GPP NRM {{TS-28.541}} Clause 6.3	ConnectionPointInfo: "DU1_Meeting_point"
+3GPP NRM {{TS-28.541}} Clause 6.3.41	ConnectionPointInfo: "DU1_Meeting_point"
          connectionPointId: 'ac01-DU1'
          connectionPointIdType: 'Attachment_Circuit'
 
@@ -1895,14 +1893,12 @@ The following attributes mapping is assumed in this example:
          
 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo: "CU-UP1_LogicalInterfaceInfo"
          logicalInterfaceType: 'VLAN'
-         logicalInterfaceId: {
-         routeInfo: {{TS-29.571}} Clause 5.4.4.16 Type "RouteInformation"
+         logicalInterfaceId: '100'
          systemName: 'CU-UP1'
          portName: 'XE'
-         vlanID: '100'
          routingProtocol: 'Static'
 
-3GPP NRM {{TS-28.541}} Clause 6.3	ConnectionPointInfo: "CU-UP1_Meeting_point"
+3GPP NRM {{TS-28.541}} Clause 6.3.41	ConnectionPointInfo: "CU-UP1_Meeting_point"
          connectionPointId: 'ac01-CU-UP1'
          connectionPointIdType: 'Attachment_Circuit'
 
@@ -1981,7 +1977,7 @@ in EP_Transport*/
        "ac": [
          {
            "name": "ac01-DU1",
-** 3GPP NRM {{TS-28.541}} Clause 6.3	ConnectionPointInfo.connectionPointId **
+** 3GPP NRM {{TS-28.541}} Clause 6.3.41	ConnectionPointInfo.connectionPointId **
            "description": "meeting point DU1-PE1",
            "l2-connection": {
              "encapsulation": {
@@ -1990,7 +1986,7 @@ in EP_Transport*/
          logicalInterfaceType: 'VLAN'
                "dot1q": {
                  "cvlan-id": 100
-** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.vlanID **
+** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.logicalInterfaceId **
                }
              },
              "bearer-reference": "line-156"
@@ -2017,7 +2013,7 @@ in EP_Transport*/
              ]
            }
            "name": "ac01-CU-UP1",
-** 3GPP NRM {{TS-28.541}} Clause 6.3	ConnectionPointInfo.connectionPointId **
+** 3GPP NRM {{TS-28.541}} Clause 6.3.41	ConnectionPointInfo.connectionPointId **
            "description": "meeting point CU-UP1-PE2",
            "l2-connection": {
              "encapsulation": {
@@ -2025,7 +2021,7 @@ in EP_Transport*/
 ** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.logicalInterfaceType **
                "dot1q": {
                  "cvlan-id": 100
-** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.vlanID **
+** 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.35 LogicalInterfaceInfo.logicalInterfaceId **
                }
              },
              "bearer-reference": "line-345"
