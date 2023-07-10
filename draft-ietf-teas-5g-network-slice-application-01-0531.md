@@ -113,16 +113,6 @@ informative:
               title: "A Realization of IETF Network Slices for 5G Networks Using Current IP/MPLS Technologies"
               date: 2023-05-23
               target: https://datatracker.ietf.org/doc/draft-srld-teas-5g-slicing/  
-
-   draft-ietf-teas-ietf-network-slice-nbi-yang:
-              title: "A YANG Data Model for the IETF Network Slice Service"
-              date: 2023-03-13   
-              target: https://datatracker.ietf.org/doc/draft-ietf-teas-ietf-network-slice-nbi-yang/
-              
-   draft-boro-opsawg-teas-attachment-circuit:
-              title: "YANG Data Models for 'Attachment Circuits'-as-a-Service (ACaaS)"
-              date: 2023-05-3   
-              target: https://datatracker.ietf.org/doc/draft-boro-opsawg-teas-attachment-circuit/
               
    TS-23.501:
               title: "3GPP TS 23.501: System architecture for the 5G System (5GS)"
@@ -491,8 +481,6 @@ along the document with similar purpose. Alignment is needed. Todo by documents 
 
 # 5G E2E Network Slice Mapping Procedure
 
-ToDo: Luis to review section 4.
-
 This section provides a general procedure of network slice mapping:
 
 ~~~   
@@ -622,7 +610,9 @@ depicted in {{Figure8}}:
 
 ToDo: to add the EP_RP representation in the figure.
 ToDo: To consider tp move this figure (& related content) before the examples. 
-ToDo: connect this part of teh document with the examples, adding some sentences pointing out to the examples.
+ToDo: connect this part of teh document with the examples, adding some sentences 
+pointing out to the examples.
+
 ~~~
         3GPP concern
 
@@ -1506,8 +1496,6 @@ gap necessary to be solved.
 In addition to that, the logical interface type and its identifier can be used as match criteria for mapping traffic between DU1 and
 CU-UP1 on the intended slice service.
 
-**TODO: Consolidate gaps discussion**
-
 As such, the NBI YANG model can result in something like:
 
 ~~~
@@ -2150,9 +2138,8 @@ This document makes no request of IANA.
 # Security Considerations
 
 # Evolution Considerations
-**TODO**
-- add topics of AC **done 23 Jun 2023. Ivan**
-- add topics of 3GPP evolution to confiderated data model 
+
+ 3GPP NRM evolution to confiderated data model approach is considered for Rel. 18
 
 # Acknowledgments
 The work of Luis M.  Contreras has been partially funded by the
