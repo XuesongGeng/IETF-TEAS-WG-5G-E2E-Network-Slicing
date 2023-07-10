@@ -2134,10 +2134,7 @@ agreement 957403.
 Thanks to Philip Eardley (philip.eardley@bt.com) for his contribution
 to this document.
 
---- back
-
 # Annex 1: 3GPP Network Slice Mapping Parameters
-{:numbered="false"}
 
 The network slice concept was introduced in 3GPP specifications from
 the first 5G release, corresponding to Release 15.  As captured in
@@ -2415,7 +2412,6 @@ From the perspective of IETF Network Slice realization, some of these
    technologies, so multiple models may be used to define slice.
 
 # Annex 2: Data Plane Mapping Options
-{:numbered="false"}
 
 The following picture shows the end-to-end network slice in data
 plane:
