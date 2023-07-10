@@ -1814,6 +1814,8 @@ As the {{!I-D.ietf-teas-ietf-network-slices}} has flexibility of Network-Specifi
 
 While 3GPP NRM Rel 17 (Section 6.3.18 of {{TS-28.541}})  EP_Transport Attribute "nextHopInfoList" from Clause 6.3.18.2 is associated with "ietf-network-slice-service:network-slice-services:slice-service:sdp:sdp-ip" value, in 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.18 EP_Transport Attribute list no longer contains IP address of TN element, but a link to IETF meeting point with connectionPointId value of "ietf-ac-svc:attachement-circuits:ac:name".
 
+Provisioning procedures of the 3GPP Elements are captured in {{TS-28.531}} where relationship between NRM leaf and IETF AC "ietf-ac-svc:attachement-circuits:ac:name" is depicted.
+
 > Note: Possible values of the attribute, specifyng the type of the connection point identifier "connectionPointIdType" are VLAN, MPLS, Segment, IPv4, IPv6, and Attachment Circuit (AC). In current exmanple Option 3 "Attachment Circuit (AC)" is used.
 
 {{Figure-AC}} captures Transport-related parameters.
