@@ -1903,7 +1903,7 @@ in EP_Transport*/
               {
                 "sdp-id": "01",
                 "node-id": "PE1",
-                "ietf-ac-glue:ac-ref": [
+                "ac-svc-name:ac-ref": [
                  "ac01-DU1"
 ** 3GPP NRM {{TS-28.541}} DU1.ConnectionPointInfo."DU1_Meeting_point".connectionPointId **
                  ]         
@@ -1911,7 +1911,7 @@ in EP_Transport*/
               {
                 "sdp-id": "02",
                 "node-id": "PE2",
-                "ietf-ac-glue:ac-ref": [
+                "ac-svc-name:ac-ref": [
                  "ac01-CU-UP1" **3GPP NRM {{TS-28.541}} CU-UP1.ConnectionPointInfo.
 "CU-UP1_Meeting_point".connectionPointId**
                  ]         
