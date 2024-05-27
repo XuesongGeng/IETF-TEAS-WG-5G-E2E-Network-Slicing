@@ -1594,19 +1594,19 @@ IP address in EP_Transport, redundant, can be removed */
 
 ## Example According to PE-mode with Meeting Point Extension of ACaaS (OPTION 3)
 
-This example is based on the Option 2 when SDP is located on the PE and utilizing the same approach for the data model of the Network Slice Service, but "attachment-circuits" section of the model is referring to the identifiers that are created using the data models specified in {{?I-D.boro-opsawg-teas-attachment-circuit}}
+This example is based on the Option 2 when SDP is located on the PE and utilizing the same approach for the data model of the Network Slice Service, but "attachment-circuits" section of the model is referring to the identifiers that are created using the data models specified in {{?draft-ietf-opsawg-teas-attachment-circuit-12}}
 
 This example following the overall conception in {{ZSM-003}} of confederated data model approach and SDO Data Model cross-referencing in order to get quicker Service and Slice provisioning in multiple domains under various SDO areas of focus, fueling closed-loop automation direction in the Management lifecycle of Slices and Services.
 
 3GPP NRM Rel 18 LogicalInterfaceInfo (Section 6.3.35 of {{TS-28.541}}) represents 3GPP IOC with TN-related parameters of the 3GPP subsystem interpreted in this example (Option 3) as CE network configuration of current model and may be referenced as a 'peer-sap-id' remote endpoint of the attachment circuit with parameters as 'nf-termination-ip' and 'nf-termination-vlan' (see more on SAPs at {{!RFC9408}}; and parameters related to the physical connection and associated with Bearer Service "ietf-ac-svc:attachement-circuits:ietf-bearer-svc".
 
-3GPP NRM ConnectionPointInfo (Section 6.3 of {{TS-28.541}}) represents 3GPP IOC with link to the external IETF data model {{?I-D.boro-opsawg-teas-attachment-circuit}} in order to link the corresponding 3GPP subsystem Transport Network-related slice Meeting Point (Clause 6.3.18 of {{TS-28.541}}, EP_Transport) to the IETF Network Slice attachment circuit.
+3GPP NRM ConnectionPointInfo (Section 6.3 of {{TS-28.541}}) represents 3GPP IOC with link to the external IETF data model {{?draft-ietf-opsawg-teas-attachment-circuit-12}} in order to link the corresponding 3GPP subsystem Transport Network-related slice Meeting Point (Clause 6.3.18 of {{TS-28.541}}, EP_Transport) to the IETF Network Slice attachment circuit.
 
 As the {{!I-D.ietf-teas-ietf-network-slices}} has flexibility of Network-Specific abstraction, a need for more attention to connectivity parameters was identified during collaboration activity in O-RAN Alliance Working Group 9 between the 3GPP SA5 representatives and IETF contributors.
 
-{{?I-D.boro-opsawg-teas-attachment-circuit}} is used jointly to the Network Slice Service YANG model  to capture and reflect IETF PE connectivity to 3GPP subsystem parameters such as:
+{{?draft-ietf-opsawg-teas-attachment-circuit-12}} is used jointly to the Network Slice Service YANG model  to capture and reflect IETF PE connectivity to 3GPP subsystem parameters such as:
 
-- Physical parameters of the bearer, captured in the "ietf-bearer-svc" YANG Module of {{?I-D.boro-opsawg-teas-attachment-circuit}}, contains the physical connectivity parameters that the link is utilizing, site location, (3GPP) device information, the IETF PE is connected to, and administrative operational parameters as status and activation time constraints.
+- Physical parameters of the bearer, captured in the "ietf-bearer-svc" YANG Module of {{?draft-ietf-opsawg-teas-attachment-circuit-12}}, contains the physical connectivity parameters that the link is utilizing, site location, (3GPP) device information, the IETF PE is connected to, and administrative operational parameters as status and activation time constraints.
 - Location information, correlated with NRM {{TS-28.623}} in corresponding 3GPP element id in Clause A 2.2.2 IOC ManagedElement.locationName attribute.
 - Logical connectivity parameters: e.g., VLAN, IPv4, and IPv6.
 - Routing protocols
