@@ -22,22 +22,28 @@ author:
     fullname: Xuesong Geng
     organization: Huawei Technologies
     email: gengxuesong@huawei.com
+    country: China
  -
     fullname: Luis M. Contreras
     organization: Telefonica
+    role: editor
     email: luismiguel.contrerasmurillo@telefonica.com
+    country: Spain
  -
     fullname: Reza Rokui
     organization: Ciena
     email: rrokui@ciena.com
+    country: Canada
  -
     fullname: Jie Dong
     organization: Huawei Technologies
     email: jie.dong@huawei.com
+    country: China
  -
     fullname: Ivan Bykov
     org: Ribbon Communications
     email: Ivan.Bykov@rbbn.com
+    country: United States of America
 
 contributor:
  -
