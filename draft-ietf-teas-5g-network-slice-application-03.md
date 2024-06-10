@@ -798,7 +798,7 @@ Various techniques can be used to map the IETF network slice to 5G E2E network s
 
 It should be noted that the first three mapping mechanisms are briefly mentioned in {{TS-28.541}}.
 
-### Mapping based on VLAN ID
+## Mapping based on VLAN ID
 
 In some scenarios, it would be possible for provider edge (PE) nodes to infer the identification of the 5G E2E network slices from the
 VLAN ID carried in the data path traffic, and map the traffic to the corresponding IETF network slice.  As shown in {{Figure15}}, the IETF
@@ -835,7 +835,7 @@ Refer to section 4.1 of {{?I-D.ietf-teas-5g-ns-ip-mpls}} for details of this sol
 ~~~
 {: #Figure15 title="VLAN based IETF Network Slice Mapping"}
 
-### Mapping based on MPLS Label or SR-MPLS SID
+## Mapping based on MPLS Label or SR-MPLS SID
 
 This section describes another solution for mapping the 5G E2E network slice traffic to IETF network slices based on MPLS/SR-MPLS labels/SIDs. The labels/SIDs carried in the packets sent from CU to UPF can be used by the provider edge (PE) nodes to infer the identification of the 5G E2E network slices and map the packet to the corresponding IETF network slice. {{Figure16}} shows an example where the 5G E2E network slice is mapped to IETF network slice INS1 using the MPLS label or SR-MPLS SID. In this case, the MPLS label or SR-MPLS SID is used for the handoff to the provider network.
 
@@ -865,7 +865,7 @@ Refer to section 4.3 of {{?I-D.ietf-teas-5g-ns-ip-mpls}} for details of this sol
 ~~~
 {: #Figure16 title=" MPLS label or SR-MPLS SID based IETF Network Slice Mapping"}
 
-### Mapping based on SRv6 SID
+## Mapping based on SRv6 SID
 
 This section describes a solution for mapping the 5G  E2E network slice traffic to IETF network slices based on SRv6 SIDs.  This solution is similar to the mapping based on MPLS label or SR-MPLS SID but using  SRv6 tunnels.  As shown in {{Figure17}}, the SRv6 SIDs is added by CU or UPF to the data path traffic between SDP1 and SPD2.  The SRv6 SIDs can be used by the provider edge (PE) nodes to infer the identification of the 5G E2E network slices and map the traffic to the corresponding IETF network slice.
 
@@ -898,7 +898,7 @@ Refer to section 4.2 of {{?I-D.ietf-teas-5g-ns-ip-mpls}} for details of this sol
 ~~~
 {: #Figure17 title="SRv6 SID based IETF Network Slice Mapping"}
 
-### Mapping based on Policy Based Routing (PBR)
+## Mapping based on Policy Based Routing (PBR)
 
 This section provides a solution for mapping the 3GPP E2E network slice traffic to IETF network slices.  As shown in {{Figure18}},
 in some deployments of the 5G network slices, it would be possible for provider edge (PE) nodes to infer the identification of the 3GPP
@@ -942,7 +942,7 @@ Once the PE nodes receives the IP packets, it may apply infer the context of the
 ~~~
 {: #Figure18 title="Policy Based Routing (PBR) based IETF Network Slice Mapping"}
 
-### Mapping based on UDP Source Port
+## Mapping based on UDP Source Port
 
 This section provides another solution for mapping the 5G E2E network slice traffic to IETF network slices.  In some deployments of the 5G E2E network slices, it might be possible for PE nodes to infer the identification of the 3GPP E2E network slice based on the information of the GTP tunnels.  As shown in {{Figure19}}, the source UDP port of the data packet may be used to infer the identification
 of 5G E2E network slices.  In this case, a mapping table between the identification of 5G network slice and the source UDP port needs to
