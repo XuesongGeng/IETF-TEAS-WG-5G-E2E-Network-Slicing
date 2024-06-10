@@ -178,10 +178,7 @@ Network (TN) and Core Network (CN).  Transport network provides the required con
 
 Editor Note - the following two paragraphs can come from different colliding versions, please, check and select one.
 
-This document focuses on the mapping between 5G network slices and the network slices in underlying Transport Networks.  Specifically, the document describes how {{!RFC9543}} Network Slice Services can be derived in the context of a 3GPP Network Slice Service in management, control and data planes, including exploring how 3GPP Slice Service parameters are mapped to parameters that are exposed in IETF service data models.  It is out of scope of this document to elaborate on the realization of {{!RFC9543}} Network Slices. The realizations of {{!RFC9543}} network slices are discussed in {{!I-D.ietf-teas-enhanced-vpn}} {{?I-D.ietf-teas-nrp-scalability}} {{?I-D.ietf-teas-ns-ip-mpls}}, and a realization model for network slicing in IP/MPLS networks for fuifilling 5G slicing connectivity services is discussed in [I-D.ietf-teas-5g-ns-ip-mpls].
-
-Jie's note: After the updates to the above paragraph, suggest to move the below text: 
-This document addresses the request of IETF Network Slice Services for 3GPP 5G Network Slices.  The details about the realization of IETF Network Slices are out of the scope of this document and addressed in other documents such as {{!I-D.ietf-teas-enhanced-vpn}} {{?I-D.ietf-teas-nrp-scalability}} {{?I-D.ietf-teas-ns-ip-mpls}} and {{?I-D.ietf-teas-5g-ns-ip-mpls}}.
+This document focuses on the mapping between 5G network slices and the network slices in underlying Transport Networks.  Specifically, the document describes how RFC9543 Network Slice Services can be derived in the context of a 3GPP Network Slice Service in management, control and data planes, including exploring how 3GPP Slice Service parameters are mapped to parameters that are exposed in IETF service data models.  It is out of scope of this document to elaborate on the realization of IETF Network Slices as per {{!RFC9543}}. The realizations of RFC9543 network slices are discussed in {{!I-D.ietf-teas-enhanced-vpn}} {{?I-D.ietf-teas-nrp-scalability}} {{?I-D.ietf-teas-ns-ip-mpls}}, and a realization model for network slicing in IP/MPLS networks for fuifilling 5G slicing connectivity services is discussed in [I-D.ietf-teas-5g-ns-ip-mpls].
 
 # Terminology
 
@@ -1945,11 +1942,13 @@ This document makes no request of IANA.
    RFC.
 
 # Security Considerations
+To be completed.
 
 # Evolution Considerations
 
- 3GPP NRM evolution to confiderated data model approach is considered for Rel. 18
+ 3GPP NRM evolution of the data model approach is considered for Rel. 18.
 
+{: numbered="false"}
 # Acknowledgments
 The work of Luis M.  Contreras has been partially funded by the
 European Commission under Horizon 2020 project Int5Gent (grant
@@ -1958,6 +1957,7 @@ agreement 957403.
 Thanks to Philip Eardley (philip.eardley@bt.com) for his contribution
 to this document.
 
+{: numbered="false"}
 # Annex 1: 3GPP Network Slice Mapping Parameters
 
 The network slice concept was introduced in 3GPP specifications from
@@ -2235,6 +2235,7 @@ From the perspective of IETF Network Slice realization, some of these
    IETF Network Slice service may be a set of techniques and underlaying
    technologies, so multiple models may be used to define slice.
 
+{: numbered="false"}
 # Annex 2: Data Plane Mapping Options
 
 The following picture shows the end-to-end network slice in data
