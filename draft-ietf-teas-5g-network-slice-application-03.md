@@ -1948,7 +1948,6 @@ To be completed.
 
  3GPP NRM evolution of the data model approach is considered for Rel. 18.
 
-{: numbered="false"}
 # Acknowledgments
 The work of Luis M.  Contreras has been partially funded by the
 European Commission under Horizon 2020 project Int5Gent (grant
@@ -1957,7 +1956,6 @@ agreement 957403.
 Thanks to Philip Eardley (philip.eardley@bt.com) for his contribution
 to this document.
 
-{: numbered="false"}
 # Annex 1: 3GPP Network Slice Mapping Parameters
 
 The network slice concept was introduced in 3GPP specifications from
@@ -2235,7 +2233,6 @@ From the perspective of IETF Network Slice realization, some of these
    IETF Network Slice service may be a set of techniques and underlaying
    technologies, so multiple models may be used to define slice.
 
-{: numbered="false"}
 # Annex 2: Data Plane Mapping Options
 
 The following picture shows the end-to-end network slice in data
