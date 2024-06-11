@@ -158,27 +158,25 @@ informative:
               target: https://www.etsi.org/deliver/etsi_gs/ZSM/001_099/003/01.01.01_60/gs_ZSM003v010101p.pdf
 
 --- abstract
-Network Slicing is one of the core features of 5G defined in 3GPP, which provides different network service as independent logical
-networks.  To provide 5G network slices services, an end-to-end network slice has to span three network segments: Radio Access
-Network (RAN), Mobile Core Network (CN) and Transport Network (TN). This document describes the application of the IETF network slice
-framework in providing 5G end-to-end network slices, including network slice mapping in the management, control and data planes.
+Network Slicing is one of the core features of 5G defined by the 3GPP, which provides different network services as independent logical
+networks.  To provide 5G Network Slices Services, an end-to-end Network Slice has to span three network segments: Radio Access
+Network (RAN), Mobile Core Network (CN), and Transport Network (TN). This document describes the application of the IETF Network Slice
+framework in providing 5G end-to-end Network Slices, including network slice mapping in the management, control, and data planes.
 
 --- middle
 
 # Introduction
 
-Driven by the new applications, 3GPP introduced the concept of network slicing as a feature of its 5G specification. Such a concept is meant to provide a customized connectivity service with specific capabilities and characteristics.  A network slice may include a set of network functions and resources(e.g. computation, storage and network resources). In the context of the IETF, the Network Slice Services are defined in {{!RFC9543}} as a set of connections between a number of Service Demarcation Points (SDPs e.g., CE, PE, or NF), where these connections having specific Service Level Objectives (SLOs) and Service Level Expectations (SLEs) over a common underlay network, with the traffic of one customer being separated from another.  The concept of IETF Network Slice Service is conceived as technology agnostic.
+The 3GPP introduced the concept of network slicing as one of the features of its 5G specification {{TS-23.501}}. Such a concept is meant to provide a customized connectivity service with specific capabilities and characteristics. A Network Slice may include a set of Network Functions (NFs) and resources (e.g., compute, storage, and network resources). In the context of the IETF, Network Slice Services are defined in {{!RFC9543}} as a set of connections between a number of Service Demarcation Points (SDPs) (e.g., Customer Edge (CE), Provider Edge (PE), or NF), where these connections having specific Service Level Objectives (SLOs) and Service Level Expectations (SLEs) over a common underlay network. The concept of IETF Network Slice Service is conceived as technology agnostic.
 
 Network Slice Services as defined in {{!RFC9543}} are thus specified in terms of the set of SDPs connected to the slice, the type of connectivity among them, and a set of SLOs and SLEs for each connectivity construct.
 
-In {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}, the endpoints are identified by an identifier, with some metrics associated to the connections among them as well as certain policies (e.g., rate limits for incoming and outgoing traffic).
+The 5G Network Slice as defined by 3GPP in {{TS-23.501}} does not take the Transport Network Slice into consideration. 3GPP introduces the concept of 5G end-to-end Network Slice Service, which is built on top of three network segments: Radio Access Network (RAN), Transport
+Network (TN), and Core Network (CN).  Transport Network provides the required connectivity between RAN and CN or within RAN/CN, with specific performance commitments.  The 5G end-to-end Network Slice Services may have distinct topology and performance requirements on the underlying Transport Network.  The Transport Network should have thus capability to support multiple IETF Network Slices. However, the decision about the number of such IETF Network Slices is deployment specific.
 
-The 5G network slice as defined by 3GPP in {{TS-23.501}} does not take the transport network slice into consideration.  3GPP introduces the concept of 5G end-to-end network slice service, which is built on top of three network segments: Radio Access Network (RAN), Transport
-Network (TN) and Core Network (CN).  Transport network provides the required connectivity between RAN and CN or inside RAN/CN, with specific performance commitment.  The 5G end-to-end network slice services may have distinct topology and performance requirements on the underlying transport network.  The transport network should have thus capability to support multiple IETF network slices.  The decision about the number of such IETF network slices is deployment specific.
+> Editor Note - the following two paragraphs can come from different colliding versions, please, check and select one.
 
-Editor Note - the following two paragraphs can come from different colliding versions, please, check and select one.
-
-This document focuses on the mapping between 5G network slices and the network slices in underlying Transport Networks.  Specifically, the document describes how RFC9543 Network Slice Services can be derived in the context of a 3GPP Network Slice Service in management, control and data planes, including exploring how 3GPP Slice Service parameters are mapped to parameters that are exposed in IETF service data models.  It is out of scope of this document to elaborate on the realization of IETF Network Slices as per {{!RFC9543}}. The realizations of RFC9543 network slices are discussed in {{!I-D.ietf-teas-enhanced-vpn}} {{?I-D.ietf-teas-nrp-scalability}} {{?I-D.ietf-teas-ns-ip-mpls}}, and a realization model for network slicing in IP/MPLS networks for fuifilling 5G slicing connectivity services is discussed in [I-D.ietf-teas-5g-ns-ip-mpls].
+This document focuses on the mapping between 5G Network Slices and the Network Slices in underlying Transport Networks. Specifically, the document describes how RFC9543 Network Slice Services can be derived in the context of a 3GPP Network Slice Service in management, control, and data planes, including exploring how 3GPP Slice Service parameters are mapped to parameters that are exposed in IETF service data models. It is out of the scope of this document to elaborate on the realization of IETF Network Slices as per {{!RFC9543}}. The realizations of RFC9543 Network Slices are discussed, e.g., in {{!I-D.ietf-teas-enhanced-vpn}}, {{?I-D.ietf-teas-nrp-scalability}}, and {{?I-D.ietf-teas-ns-ip-mpls}}. A realization model for network slicing in IP/MPLS networks for fuifilling 5G slicing connectivity services is discussed in {{?I-D.ietf-teas-5g-ns-ip-mpls}}.
 
 # Terminology
 
