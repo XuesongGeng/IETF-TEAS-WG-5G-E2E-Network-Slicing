@@ -233,36 +233,36 @@ EP_RP:
 
 # 5G End-to-End Network Slice
 
-The scope of a 5G End-to-End Network Slice service discussed in this document is shown in {{Figure1}}.  The transport networks (TN) provide the connectivity between and within RAN and CN.  To support automated enablement of 5G E2E network slices, multiple controllers are likely to manage 5G E2E network slices across RAN, CN and TN.  In addition, a 5G E2E network slice orchestrator is used to coordinate and control the overall creation and life cycle management of 5G E2E network slices across RAN, TN and CN.
+The scope of a 5G End-to-End Network Slice Service discussed in this document is shown in {{Figure1}}. TNs provide the connectivity between and within RAN and CN.  To support automated delivery of 5G E2E Network Slices, multiple controllers are likely to be involved in the management of 5G E2E Network Slices across RAN, CN, and TN. A 5G E2E network slice orchestrator is used to coordinate and control the overall creation and life cycle management of 5G E2E Network Slices across RAN, TN, and CN.
 
 ~~~
     <-------------------- 5G E2E Network Slice ------------------->
 
-        |-----------------------------------------------------|
+        +-----------------------------------------------------+
         |           5G E2E Network Slice Orchestrator         |
-        |-------|-------------------|-------------------|-----|
-                |                  |                   |
-                v                  v                   v
-        |---------------|     |------------|    |--------------|
+        +-------|-------------------|-------------------|-----+
+                |                   |                   |
+                v                   v                   v
+        +---------------+     +------------+    +--------------+
         |   RAN Slice   |     |    IETF    |    |   CN Slice   |
         |   Controller  |     |    NSC     |    |   Controller |
-        |-------|-------|     |-----|------|    |------|-------|
+        +-------|-------+     +-----|------+    +------|-------+
                 |                   |                  |
                 v                   v                  v
      ............................        ..........................
      : RAN                      :        : CN                     :
      :                          :        :                        :
-     : |-----|  |----|  |-----| : |----| : |----|  |----|  |----| :
+     : +-----+  +----+  +-----+ : +----+ : +----+  +----+  +----+ :
      : | RAN |--| TN |--| RAN |---| TN |---| CN |--| TN |--| CN | :
-     : | NFs |  |----|  | NFs | : |----| : | NFs|  |----|  | NFs| :
-     : |-----|          |-----| :        : |----|          |----| :
+     : | NFs |  |----|  | NFs | : +----+ : | NFs|  +----+  | NFs| :
+     : +-----+          +-----+ :        : +----+          +----+ :
      :                          :        :                        :
      :..........................:        :........................:
 ~~~
 {: #Figure1 title="Scope of 5G End to End Network Slice"}
 
-Depending on RAN deployment, a single 5G E2E network slice might have one or more IETF network slices.
-Depends on the operator's networks, one or more of the following RAN deployments might be used. With different RAN deployments, the scope of TN slice may be different. These RAN deployments are discussed in the following sections:
+Depending on RAN deployment, a single 5G E2E Network Slice might involve one or more IETF Network Slices.
+One or more of the following RAN deployments might be used as a function of the operator's networks. With different RAN deployments, the scope of TN slice may be different. These RAN deployments are discussed in the following sections:
 
    *  Distributed RAN
 
