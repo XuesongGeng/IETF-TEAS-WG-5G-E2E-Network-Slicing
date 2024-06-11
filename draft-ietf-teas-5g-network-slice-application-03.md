@@ -186,37 +186,49 @@ This document uses the terms defined in {{!RFC9543}}.
 
 The following abbreviations are used in this document:
 
-~~~
-   NSC: IETF Network Slice Controller
+   NSC:
+   : IETF Network Slice Controller
 
-   NSI: Network Slice Instance
+   NSI:
+   : Network Slice Instance
 
-   NSSI: Network Slice Subnet Instance
+   NSSI:
+   : Network Slice Subnet Instance
 
-   S-NSSAI: Single Network Slice Selection Assistance Information
+   S-NSSAI:
+   : Single Network Slice Selection Assistance Information
 
-   RAN: Radio Access Network
+   RAN:
+   : Radio Access Network
 
-   TN: Transport Network
+   TN:
+   : Transport Network
 
-   CN: Mobile Core Network
+   CN:
+   : Mobile Core Network
 
-   DSCP: Differentiated Services Code Point
+   DSCP:
+   : Differentiated Services Code Point
 
-   CSMF: Communication Service Management Function
+   CSMF:
+   : Communication Service Management Function
 
-   NSMF: Network Slice Management Function
+   NSMF:
+   : Network Slice Management Function
 
-   NSSMF: Network Slice Subnet Management Function
+   NSSMF:
+   : Network Slice Subnet Management Function
 
-   IOC: Information Object Class model, defined in 3GPP
-~~~
+   IOC:
+   : Information Object Class
 
-In addition to that, the following terms from 3GPP are also used:
+The following terms from the 3GPP are also used:
 
-* EP_transport: 3GPP Information Object Class (IOC) defined in {{TS-28.541}} which, represents the logical transport interface of a RAN or CN and includes transport-related information with reference(s) to attachment circuit DM in IETF domain. 
+EP_transport:
+: 3GPP Information Object Class (IOC) defined in {{TS-28.541}} which, represents the logical transport interface of a RAN or CN and includes transport-related information with reference(s) to attachment circuit DM in IETF domain. 
 
-* EP_RP: 3GPP IOC defined in {{TS-28.622}}, provided for sub-classing only. This IOC represents an end point of a link used across a reference point between two network entities. Inherited by EP_NgU, EP_F1U, EP_S1U, EP_X2U, etc. 
+EP_RP:
+: 3GPP IOC defined in {{TS-28.622}}, provided for sub-classing only. This IOC represents an endpoint of a link used across a reference point between two network entities. Inherited by EP_NgU, EP_F1U, EP_S1U, EP_X2U, etc. 
 
 
 # 5G End-to-End Network Slice
