@@ -182,8 +182,6 @@ This document focuses on the mapping between 5G Network Slices and the Network S
 
 ## Requirements Language
 
-{::boilerplate bcp14-tagged}
-
 This document uses the terms defined in {{!RFC9543}}.
 
 The following abbreviations are used in this document:
