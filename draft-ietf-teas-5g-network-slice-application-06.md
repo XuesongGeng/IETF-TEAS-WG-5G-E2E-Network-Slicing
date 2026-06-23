@@ -404,6 +404,8 @@ Based on the Architecture of an IETF Network Slice and Interface of IETF Network
 ~~~
 {: #Figure5 title="Relationship between 3GPP domain controllers and IETF Network Slice Controller"}
 
+Note: In {{Figure5}}, the IETF Network Slice Controller (NSC) and transport network components are within the scope of IETF specifications. The 3GPP management entities shown in the figure are outside the IETF scope and are included for reference only. Moreover, the terms CSMF (Communication Service Management Function), NSMF (Network Slice Management Function) and NSSMF (Network Slice Subnet Management Function) are used to illustrate typical roles involved in network slicing management. It should be noted that these are not standardized management functions in 3GPP, but rather represent deployment examples of Management Service (MnS) producers and consumers, as described in 3GPP TS 28.531 and TS 28.533 (Annex A.8).
+
 An example of 5G E2E Network Slice is showed in {{Figure6}}.  Each E2E network slice contains RAN slice, CN slice and one or more IETF
 network Slices. 3GPP identifies each E2E network slice using an integer called S-NSSAI.  In {{Figure6}} there are three instances of E2E
 network slices which are identified by S-NSSAI 01111111, 02222222 and 03333333, respectively.  Each instance of E2E network slice contains
