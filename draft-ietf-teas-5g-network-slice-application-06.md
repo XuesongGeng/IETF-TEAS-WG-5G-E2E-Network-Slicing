@@ -452,23 +452,24 @@ The following network slice related identifiers in management, control and data 
 
 ## 5G E2E Network Slice Mapping Procedure
 
-This section provides a general procedure of network slice mapping:
+This section provides a general procedure of network slice mapping, illustrating the relationship between NSI/NSSI instances and IETF Network Slice Service identifiers.
 
 ~~~
                   +-----------------+
                   |       NSMF      |
                   +-----------------+
        +----------|     S-NSSAI     |----------+
-       |          |(e.g., 011111111)|          |
+       |          |  (e.g., SST=1,  |          |
+       |          |   SD=0x000001)  |          |
        |          +-----------------+          |
        |                   |                   |
        V                   V                   V
 +-------------+ +---------------------+ +-------------+
 |  RAN NSSMF  | |       IETF NSC      | |   CN NSSMF  |
 +-------------+ +---------------------+ +-------------+
-|   RAN Slice | | IETF Network Slice  | |   CN Slice  |
-| Identifier  | |     Identifier      | |  Identifier |
-| (e.g., 4)   | |     (e.g., 6)       | |  (e.g., 1)  |    Management
+|  RAN NSSI   | | IETF Network Slice  | |   CN NSSI   |
+| Identif. (e.| |  Service Identif.   | | Identif. (e.|
+|  g.,NSSI-4) | |    (e.g.,NS- 6)     | |  g.,NSSI-1) |    Management
 +-------------+ +---------------------+ +-------------+      Plane
      |           |                   |          |     -----------------
      |           |                   |          |
@@ -479,23 +480,29 @@ This section provides a general procedure of network slice mapping:
 ~~~
 {: #Figure7 title="Relationship between IETF and 3GPP Network Slice Management"}
 
-1. 3GPP NSMF receives the request from 3GPP CSMF for allocation of a network slice instance with certain characteristics.
+In this figure, the identifiers shown for RAN and CN correspond to Network Slice Subnet Instances (NSSIs) within their respective domains. The IETF Network Slice identifier refers to the Network Slice Service identifier assigned by the IETF Network Slice Controller.
 
-2.  Based on the service requirement, 3GPP NSMF acquires requirements for the end-to-end network slice instance, which is defined in
+The S-NSSAI is used as a selection and association parameter linking the NSI to its constituent NSSIs and transport network slice services, but it does not represent a unique identifier of any individual slice instance.
+
+The mapping procedure is as follows:
+
+1. 3GPP NSMF receives the request from 3GPP CSMF for allocation of a network slice instance (NSI) with certain characteristics.
+
+3.  Based on the service requirement, 3GPP NSMF acquires requirements for the end-to-end network slice instance, which is defined in
 Service Profile (section 6.3.3 of {{TS-28.541}}).
 
-3.  Based on Service Profile, 3GPP NSMF determines the network function and the required resources in AN, CN and TN networks.  It
+4.  Based on Service Profile, 3GPP NSMF determines the network function and the required resources in AN, CN and TN networks.  It
 also assigns the unique S-NSSAI ID.
 
-4. 3GPP NSMF sends a request to AN NSSMF for creation of AN Slice, which is out of the scope of this document.
+5. 3GPP NSMF sends a request to AN NSSMF for creation of AN Slice, which is out of the scope of this document.
 
-5. 3GPP NSMF sends a request to CN NSSMF for creation of CN Slice, which is out of the scope of this document.
+6. 3GPP NSMF sends a request to CN NSSMF for creation of CN Slice, which is out of the scope of this document.
 
-6. 3GPP NSMF sends a request to an IETF NSC (acting as an NSSMF for transport network, from the perspective of the 3GPP Management System)) for creation of a RFC9543 Network Slice service. The request contains attributes such as endpoints (based on the information from EP_Transport), required SLA along with other IETF network slice attributes. 
+7. 3GPP NSMF sends a request to an IETF NSC (acting as an NSSMF for transport network, from the perspective of the 3GPP Management System)) for creation of a RFC9543 Network Slice service. The request contains attributes such as endpoints (based on the information from EP_Transport), required SLA along with other IETF network slice attributes. 
 
-7. The IETF NSC realizes the IETF Network Slice which satisfies the requirements of the  {{!RFC9543}} Network Slice Service requested between the specified endpoints (RAN/CN edge nodes). The IETF NSC might assign an IETF Network Slice Service ID and send it to 3GPP NSMF.
+8. The IETF NSC realizes the IETF Network Slice which satisfies the requirements of the  {{!RFC9543}} Network Slice Service requested between the specified endpoints (RAN/CN edge nodes). The IETF NSC might assign an IETF Network Slice Service ID and send it to 3GPP NSMF.
 
-8. The 3GPP NSMF could maintain the mapping relationship between S-NSSAI and IETF Network Slice Service ID.
+9. The 3GPP NSMF could maintain the mapping relationship between S-NSSAI and IETF Network Slice Service ID.
 
 #  5G E2E Network Slice Mapping in Management and Control Planes
 
