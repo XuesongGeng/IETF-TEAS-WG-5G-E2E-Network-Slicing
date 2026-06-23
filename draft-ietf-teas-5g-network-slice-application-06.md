@@ -409,7 +409,7 @@ network Slices. 3GPP identifies each E2E network slice using an integer called S
 network slices which are identified by S-NSSAI 01111111, 02222222 and 03333333, respectively.  Each instance of E2E network slice contains
 AN slice, CN Slice and one or more IETF network slices.  For example, E2E network slice 01111111 has AN Slice instance 4, CN Slice instance 1 and IETF network slice 6.  Note that 3GPP does not cover the IETF network slice.  Details of IETF network slice could be found in {{!RFC9543}}.
 
-Note that 3GPP uses the terms NSI and NSSI which are a set of network function and required resources (e.g. compute, storage and networking resources) which corresponds to network slice Instance, whereas S-NSSAI is an integer that identifies the E2E network slice.
+In 3GPP, a Network Slice Instance (NSI) represents an end-to-end network slice instance, while a Network Slice Subnet Instance (NSSI) represents a slice instance within a specific network domain (e.g., RAN, CN, or TN). The S-NSSAI is used as a selection and identification parameter in signalling, but it does not uniquely identify a specific NSI or NSSI instance within the management system.
 
 ~~~
                +-----------+ +-----------+  +-----------+
@@ -485,7 +485,7 @@ This section provides a general procedure of network slice mapping:
 Service Profile (section 6.3.3 of {{TS-28.541}}).
 
 3.  Based on Service Profile, 3GPP NSMF determines the network function and the required resources in AN, CN and TN networks.  It
-also assigns the unique S-NSSAI ID.
+also assigns the S-NSSAI value used for slice selection and association to the NSI..
 
 4. 3GPP NSMF sends a request to AN NSSMF for creation of AN Slice, which is out of the scope of this document.
 
@@ -495,7 +495,9 @@ also assigns the unique S-NSSAI ID.
 
 7. The IETF NSC realizes the IETF Network Slice which satisfies the requirements of the  {{!RFC9543}} Network Slice Service requested between the specified endpoints (RAN/CN edge nodes). The IETF NSC might assign an IETF Network Slice Service ID and send it to 3GPP NSMF.
 
-8. The 3GPP NSMF could maintain the mapping relationship between S-NSSAI and IETF Network Slice Service ID.
+8. The 3GPP NSMF could maintain the mapping relationship between an NSI and the corresponding IETF Network Slice Service identifier, while S-NSSAI is used as an association parameter.
+
+Note: In 3GPP, S-NSSAI is used for slice selection and signalling purposes, while NSI/NSSI represent the actual instantiated slice resources managed within the system.
 
 #  5G E2E Network Slice Mapping in Management and Control Planes
 
