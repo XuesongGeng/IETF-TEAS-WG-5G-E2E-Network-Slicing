@@ -432,13 +432,13 @@ Note that 3GPP uses the terms NSI and NSSI which are a set of network function a
 
 ## 5G E2E Network Slice Mapping Identifier
 
-The following network slice related identifiers in management, control and data planes play an important role in the end-to-   end network slice mapping:
+The following network slice related identifiers in management, control and data planes play an important role in the end-to-end network slice mapping:
 
 * Single Network Slice Selection Assistance Information (S-NSSAI): the end-to-end network slice identifier, which is defined in      {{TS-23.501}}; S-NSSAI is used during 3GPP network slice signaling process.
 
 * Network Slice Service identifier : An identifier allocated by IETF Network Slice Controller (NSC) in the management plane.  See {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
 
-
+In the context of this document, the 3GPP Network Slice Instance (NSI) is identified by the S-NSSAI value, which represents the end-to-end network slice instance. The mapping described in this document refers to the association between this NSI (via S-NSSAI) and the corresponding IETF Network Slice Service identifier.
 
 ## 5G E2E Network Slice Mapping Procedure
 
@@ -491,7 +491,7 @@ also assigns the unique S-NSSAI ID.
 
 The transport network management Plane maintains the interface between 3GPP NSMF and TN NSSMF. It is supposed to satisfy the following requirements:
 
-1. Build up mapping relationship between NSI identifier and RFC9543 Network Slice Services;
+1. Build up mapping relationship between the 3GPP Network Slice Instance (NSI), identified by S-NSSAI, and the corresponding RFC9543 Network Slice Service identifier;
 
 2. Guarantee that IETF network slice could satisfy the SLA requirements with the transport network connection between AN and CN;
 
