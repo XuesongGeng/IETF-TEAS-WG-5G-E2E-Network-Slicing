@@ -547,17 +547,24 @@ The 3GPP Management system provides the EP_Transport Information Object Class (I
 
 - QoS Profile (Optional): A set of parameters specifying the Quality of Service (QoS) requirements for the slice.
 
-The parameters from the EP_Transport IOC (representing the 3GPP domain) needs to be translated into the corresponding parameters for the CE within the IETF network slice. This translation process can be straightforward in certain scenarios. In such cases, the information from the EP_Transport IOC can be directly passed to the IETF Network Slice Subsystem (NSS) through the standardized Network Slice Services Interface defined in RFC9543. However, additional information might be required which have not been specified in 3GPP standards, e.g., subnet mask for the IP address). 
+The parameters from the EP_Transport IOC (representing the 3GPP domain) need to be translated into the corresponding parameters for the CE within the IETF Network Slice Service. This translation is part of the mapping process performed by the IETF Network Slice Controller (NSC) upon receiving a slice request from the 3GPP management system.
+
+The mapping process can be decomposed into the following logical steps:
+
+1. Endpoint Identification: The NSC derives the CE endpoints of the IETF Network Slice from the EP_Transport attributes. The IP address, optionally combined with logical interface identifiers (e.g., VLAN ID, MPLS label, or SR SID), is used to uniquely identify the CE endpoint associated with a 3GPP-managed function.
+
+2. Attachment Circuit Determination: The combination of the IP address and logical interface information (logicInterfaceType and logicInterfaceId) is used by the NSC to infer the appropriate attachment circuit (AC) parameters required to connect the CE endpoint to the provider network.
+
+3. Peer Endpoint Inference: The nextHopInfo attribute provides information about the adjacent transport node, which can assist the NSC in identifying the peer-side connectivity and validating the end-to-end slice topology.
+
+4. Service Requirement Mapping: The qosProfile attribute is used to derive Service Level Objectives (SLOs) for the IETF Network Slice Service. Additional Service Level Expectations (SLEs), if needed, may be inferred from higher-layer slice profiles or complemented with external information.
+
+This mapping is technology-agnostic and relies on the abstraction provided by the Network Slice Service Model (NSSM) defined in {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}. 
 
 For example, when 3GPP-managed functions reside on dedicated monolithic network elements, the IP address in the EP_Transport IOC could directly map to the IP address of the corresponding interface.
 
-The mapping process becomes more complex when dealing with virtualized 3GPP-managed functions. These functions can be instantiated on general-purpose servers or within data centers. In these scenarios, additional information are needed to identify the corresponding CE endpoint for example with other parameters defined in EP_transport, including:
+The mapping process becomes more complex when dealing with virtualized 3GPP-managed functions. These functions can be instantiated on general-purpose servers or within data centers, where the EP_Transport IP address may not directly correspond to the physical CE interface towards the transport network. In such scenarios, additional context is required to resolve the CE endpoint, potentially combining multiple EP_Transport attributes and deployment-specific information.
 
-* Combined Identification: The NS CE endpoint might be identified by a combination of the IP address and additional information like VLAN tag, MPLS label, or SR SID. This combination helps distinguish specific logical interfaces.
-
-* Next Hop Information: The next hop router information, as viewed by the 3GPP entity within the slice, could provide hints for determining the slice endpoint at the other side of the slice boundary.
-
-* QoS Profile: The QoS profile, if present, helps configure the PE endpoint to meet the Service Level Objectives (SLOs) for the connection between the CE slice endpoints.
 
 
 ##  Mapping IETF NS CE to PE Endpoints
