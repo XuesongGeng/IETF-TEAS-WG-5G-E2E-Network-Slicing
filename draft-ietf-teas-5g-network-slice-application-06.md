@@ -471,6 +471,8 @@ The following network slice related identifiers in management, control and data 
 
 This section provides a general procedure of network slice mapping, illustrating the relationship between NSI/NSSI instances and IETF Network Slice Service identifiers.
 
+Note that this procedure focuses on the interaction between 3GPP management system and IETF Network Slice Controller. The internal realization and mapping functions within the IETF NSC are out of scope of this document.
+
 ~~~
                   +-----------------+
                   |       NSMF      |
