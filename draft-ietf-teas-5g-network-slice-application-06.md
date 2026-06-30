@@ -226,6 +226,12 @@ The following abbreviations are used in this document:
    IOC: Information Object Class model, defined in 3GPP
 ~~~
 
+In the context of this document, the terms CSMF (Communication Service Management Function), NSMF (Network Slice Management Function), and NSSMF (Network Slice Subnet Management Function) are used to illustrate typical roles involved in network slicing management.
+
+However, it should be noted that these are not standardized management functions in 3GPP, but rather represent deployment examples of Management Service (MnS) producers and consumers, as described in 3GPP TS 28.531 and 3GPP TS 28.533 (Annex A.8).
+
+These terms are used in this document for explanatory purposes only and do not imply the definition of normative functional entities in the 3GPP architecture.
+
 In addition to that, the following terms from 3GPP are also used:
 
 * EP_transport: 3GPP Information Object Class (IOC) defined in {{TS-28.541}} which, represents the logical transport interface of a RAN or CN and includes transport-related information with reference(s) to attachment circuit DM in IETF domain. 
@@ -373,6 +379,8 @@ For the sake of illustration, the following sections in this document all consid
 
 Based on the Architecture of an IETF Network Slice and Interface of IETF Network Slice Management Architecture defined in {{!RFC9543}}, {{Figure5}} shows the relationship between 3GPP controllers and IETF Network Slice Controller.
 
+Note: CSMF, NSMF and NSSMF are shown as illustrative deployment roles and do not represent normative standardized functions in 3GPP specifications.
+
 ~~~
        +---------------------+
        |         CSMF        |
@@ -402,7 +410,7 @@ Based on the Architecture of an IETF Network Slice and Interface of IETF Network
     `???'      `?????'      `?????'              `???????'
 
 ~~~
-{: #Figure5 title="Relationship between 3GPP domain controllers and IETF Network Slice Controller"}
+{: #Figure5 title="Relationship between 3GPP management roles and IETF Network Slice Controller"}
 
 An example of 5G E2E Network Slice is showed in {{Figure6}}.  Each E2E network slice contains RAN slice, CN slice and one or more IETF
 network Slices. 3GPP identifies each E2E network slice using an integer called S-NSSAI.  In {{Figure6}} there are three instances of E2E
