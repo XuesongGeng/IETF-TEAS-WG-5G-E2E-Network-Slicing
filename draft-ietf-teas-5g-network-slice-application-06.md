@@ -196,6 +196,8 @@ This document uses the terms defined in {{!RFC9543}}.
 
 The definitions of entities (e.g., DU, CU) or interfaces (e.g., F1) applicable to 3GPP slicing scenarios are provided by 3GPP specifications, such as {{TS-38.401}}. Similarly, the definitions of entities or interfaces (e.g., Midhaul) applicable to O-RAN slicing scenarios are provided by O-RAN specifications, such as {{O-RAN-Arch}}. Both 3GPP and O-RAN specifications take precedence over the definitions used in this document for 3GPP and O-RAN concepts. 
 
+The terms “RAN Slice” and “Core Network (CN) Slice” are used in this document as informal expressions to refer to network slice portions within specific technology domains. It should be noted that these terms are not formally defined in 3GPP normative specifications. In 3GPP, the corresponding concept is defined as a Network Slice Subnet, as specified in 3GPP TS 28.530. Where appropriate, the term Network Slice Subnet should be considered as the normative equivalent.
+
 The following abbreviations are used in this document:
 
 ~~~
@@ -225,6 +227,12 @@ The following abbreviations are used in this document:
 
    IOC: Information Object Class model, defined in 3GPP
 ~~~
+
+In the context of this document, the terms CSMF (Communication Service Management Function), NSMF (Network Slice Management Function), and NSSMF (Network Slice Subnet Management Function) are used to illustrate typical roles involved in network slicing management.
+
+However, it should be noted that these are not standardized management functions in 3GPP, but rather represent deployment examples of Management Service (MnS) producers and consumers, as described in 3GPP TS 28.531 and 3GPP TS 28.533 (Annex A.8).
+
+These terms are used in this document for explanatory purposes only and do not imply the definition of normative functional entities in the 3GPP architecture.
 
 In addition to that, the following terms from 3GPP are also used:
 
@@ -264,13 +272,15 @@ The scope of a 5G End-to-End Network Slice service discussed in this document is
 {: #Figure1 title="Scope of 5G End to End Network Slice"}
 
 Depending on RAN deployment, a single 5G E2E network slice might have one or more IETF network slices.
-Depends on the operator's networks, one or more of the following RAN deployments might be used. With different RAN deployments, the scope of TN slice may be different. These RAN deployments are discussed in the following sections:
+Depending on the operator's networks, one or more of the following RAN deployments might be used. With different RAN deployments, the scope of TN slice may be different. These RAN deployments are discussed in the following sections:
 
    *  Distributed RAN
 
    *  Centralized RAN
 
    *  Cloud RAN (C-RAN)
+
+It should be noted that terms such as “Centralized RAN” and “Cloud RAN” are used here for illustrative purposes and are not normative 3GPP-defined terms.
 
 ## IETF Network Slices in Distributed RAN Deployment
 
@@ -295,8 +305,8 @@ In this deployment a single 5G E2E network slice might have one or more IETF net
    :...........:          :.......................:
 Legend
    INS: IETF Network Slice
-   RS: RAN Slice
-   CS: Core Slice
+   RS: RAN Slice (informal term corresponding to 3GPP Network Slice Subnet)
+   CS: Core Slice (informal term corresponding to 3GPP Network Slice Subnet)
 ~~~
 {: #Figure2 title="IETF network slices in distributed RAN deployment"}
 
@@ -322,8 +332,8 @@ In general, the RAN network consists of network functions for processing the rad
         :.......................:          :.........................:
      Legend
        INS: IETF Network Slice
-       RS: RAN Slice
-       CS: Core Slice
+       RS: RAN Slice (informal term corresponding to 3GPP Network Slice Subnet)
+       CS: Core Slice (informal term corresponding to 3GPP Network Slice Subnet)
        FN: Fronthaul IETF network
        BH: Backhaul IETF network
 ~~~
@@ -356,8 +366,8 @@ network slices INS1, INS2 and INS3 are similar to those in {{Figure3}}. An addit
      :....................................:        :...................:
   Legend
     INS: IETF Network Slice
-    RS: RAN Slice
-    CS: Core Slice
+    RS: RAN Slice (informal term corresponding to 3GPP Network Slice Subnet)
+    CS: Core Slice (informal term corresponding to 3GPP Network Slice Subnet)
     FN: Fronthaul IETF network
     MN: Midhaul IETF network
     BH: Backhaul IETF network
@@ -372,6 +382,8 @@ For the sake of illustration, the following sections in this document all consid
 ## Relationship Between IETF Network Slices and 3GPP Network Slices
 
 Based on the Architecture of an IETF Network Slice and Interface of IETF Network Slice Management Architecture defined in {{!RFC9543}}, {{Figure5}} shows the relationship between 3GPP controllers and IETF Network Slice Controller.
+
+Note: CSMF, NSMF and NSSMF are shown as illustrative deployment roles and do not represent normative standardized functions in 3GPP specifications.
 
 ~~~
        +---------------------+
@@ -402,7 +414,9 @@ Based on the Architecture of an IETF Network Slice and Interface of IETF Network
     `???'      `?????'      `?????'              `???????'
 
 ~~~
-{: #Figure5 title="Relationship between 3GPP domain controllers and IETF Network Slice Controller"}
+{: #Figure5 title="Relationship between 3GPP management roles and IETF Network Slice Controller"}
+
+Note: In {{Figure5}}, the IETF Network Slice Controller (NSC) and transport network components are within the scope of IETF specifications. The 3GPP management entities shown in the figure are outside the IETF scope and are included for reference only. Moreover, the terms CSMF (Communication Service Management Function), NSMF (Network Slice Management Function) and NSSMF (Network Slice Subnet Management Function) are used to illustrate typical roles involved in network slicing management. It should be noted that these are not standardized management functions in 3GPP, but rather represent deployment examples of Management Service (MnS) producers and consumers, as described in 3GPP TS 28.531 and TS 28.533 (Annex A.8).
 
 An example of 5G E2E Network Slice is showed in {{Figure6}}.  Each E2E network slice contains RAN slice, CN slice and one or more IETF
 network Slices. 3GPP identifies each E2E network slice using a Single Network Slice Selection Assistance Information (S-NSSAI), as defined in TS 23.501. The S-NSSAI consists of a Slice/Service Type (SST) and an optional Slice Differentiator (SD). 
