@@ -419,16 +419,18 @@ Note: CSMF, NSMF and NSSMF are shown as illustrative deployment roles and do not
 Note: In {{Figure5}}, the IETF Network Slice Controller (NSC) and transport network components are within the scope of IETF specifications. The 3GPP management entities shown in the figure are outside the IETF scope and are included for reference only. Moreover, the terms CSMF (Communication Service Management Function), NSMF (Network Slice Management Function) and NSSMF (Network Slice Subnet Management Function) are used to illustrate typical roles involved in network slicing management. It should be noted that these are not standardized management functions in 3GPP, but rather represent deployment examples of Management Service (MnS) producers and consumers, as described in 3GPP TS 28.531 and TS 28.533 (Annex A.8).
 
 An example of 5G E2E Network Slice is showed in {{Figure6}}.  Each E2E network slice contains RAN slice, CN slice and one or more IETF
-network Slices. 3GPP identifies each E2E network slice using an integer called S-NSSAI.  In {{Figure6}} there are three instances of E2E
-network slices which are identified by S-NSSAI 01111111, 02222222 and 03333333, respectively.  Each instance of E2E network slice contains
-AN and CN network slice subnets (informally referred to as slices in this document) and one or more IETF network slices.  For example, E2E network slice 01111111 has AN Slice instance 4, CN Slice instance 1 and IETF network slice 6.  Note that 3GPP does not cover the IETF network slice.  Details of IETF network slice could be found in {{!RFC9543}}.
+network Slices. 3GPP identifies each E2E network slice using a Single Network Slice Selection Assistance Information (S-NSSAI), as defined in TS 23.501. The S-NSSAI consists of a Slice/Service Type (SST) and an optional Slice Differentiator (SD). 
 
-Note that 3GPP uses the terms NSI and NSSI which are a set of network function and required resources (e.g. compute, storage and networking resources) which corresponds to network slice Instance, whereas S-NSSAI is an integer that identifies the E2E network slice.
+In {{Figure6}} there are three instances of E2E
+network slices which are identified by S-NSSAI values composed of SST and SD, such as {SST=1, SD=0x000001}; {SST=1, SD=0x000002}; and {SST=1, SD=0x000003}, respectively.  Each instance of an E2E network slice (identified by an S-NSSAI) contains AN and CN components and one or more IETF network slices. For example, E2E network slice with S-NSSAI value {SST=1, SD=0x000001} has AN Slice instance 4, CN Slice instance 1 and IETF network slice 6.  Note that 3GPP does not cover the IETF network slice.  Details of IETF network slice could be found in {{!RFC9543}}.
+
+Note that 3GPP uses the terms NSI and NSSI which are a set of network function and required resources (e.g. compute, storage and networking resources) which corresponds to network slice Instance, whereas S-NSSAI is structured identifier (including SST and SD fields) that identifies the E2E network slice.
 
 ~~~
                +-----------+ +-----------+  +-----------+
                |  S-NSSAI  | |  S-NSSAI  |  |  S-NSSAI  |
-               |  01111111 | |  02222222 |  |  03333333 |
+               |    SST=1  | |    SST=1  |  |    SST=1  |
+               |SD=0x000001| |SD=0x000002|  |SD=0x000003|
                +---|-------+ +---|---|---+  +----|------+
                    |  +----------+   |           |
                    V  V              V           V
@@ -2214,6 +2216,8 @@ represents this relationship between 3GPP and IETF parameters.
                                                     +------------------+
 ~~~
 {: #Figure34 title="Example of CU-UP Slice in the 3GPP domain using an IETF Network Slice service"}
+
+Note: S-NSSAI is represented in this way in the figure for simplicity, but S-NSSAI is not a simple numerical identifier, but a structured identifier including SST and SD fields, as defined in TS 23.501.
 
 From the perspective of IETF Network Slice realization, some of these
    options could be realized in a straightforward manner while other
