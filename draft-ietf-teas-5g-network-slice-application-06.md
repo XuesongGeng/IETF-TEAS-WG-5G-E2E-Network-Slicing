@@ -1643,6 +1643,10 @@ As the {{!RFC9453}} has flexibility of Network-Specific abstraction, a need for 
 - Logical connectivity parameters: e.g., VLAN, IPv4, and IPv6.
 - Routing protocols
 
+The routingProtocol attribute, when present, can provide guidance on the routing model expected at the CE-PE boundary. However, due to limitations in the 3GPP NRM, not all routing paradigms (e.g., static or directly connected routing) are explicitly represented.
+
+Therefore, the IETF NSC should use the routingProtocol value as an indicative parameter rather than a strict requirement. When such information is missing or not directly mappable, the NSC may infer the appropriate routing behavior (e.g., direct-routing) based on the connectivity context provided by EP_Transport attributes such as ipAddress, logicalInterfaceInfo, and connectionPointRef.
+
 While 3GPP NRM Rel 17 (Section 6.3.18 of {{TS-28.541}})  EP_Transport Attribute "nextHopInfoList" from Clause 6.3.18.2 is associated with "ietf-network-slice-service:network-slice-services:slice-service:sdp:sdp-ip" value, in 3GPP NRM Rel 18 {{TS-28.541}} Clause 6.3.18 EP_Transport Attribute list no longer contains IP address of TN element, but a link to IETF meeting point with connectionPointId value of "ietf-ac-svc:attachment-circuits:ac:name".
 
 Provisioning procedures of the 3GPP Elements are captured in {{TS-28.531}} where relationship between NRM leaf and IETF AC "ietf-ac-svc:attachment-circuits:ac:name" is depicted.
@@ -1693,8 +1697,11 @@ The following attributes mapping is assumed in this example:
          portName: 'XE'
          routingProtocol: 'Static'
 
-** Note: LogicalInterfaceInfo.routingProtocol has Allowed values:  RIP, IGMP, OSPF, EGP, EIGRP, BGP, IS-IS.**
-** Identified gap: No Static or Direct_connect value is available.**
+**Note: LogicalInterfaceInfo.routingProtocol has allowed values such as RIP, IGMP, OSPF, EGP, EIGRP, BGP, and IS-IS as defined in 3GPP NRM.**
+
+**However, some deployment scenarios (e.g., direct CE-PE connectivity) may rely on static or directly connected routing models, which are not explicitly represented in the current 3GPP NRM.**
+
+**In such cases, the absence of a specific routing protocol value should not prevent the realization of the IETF Network Slice Service. Instead, the IETF NSC may interpret the routing context as "direct-routing" or equivalent, based on the available EP_Transport information and deployment assumptions.**
 
 3GPP NRM {{TS-28.541}} Clause 6.3.41   ConnectionPointInfo: "DU1_Meeting_point"
          connectionPointId: 'ac01-DU1'
