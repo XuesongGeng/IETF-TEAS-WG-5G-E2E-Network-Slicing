@@ -497,6 +497,9 @@ This section provides a general procedure of network slice mapping, illustrating
 ~~~
 {: #Figure7 title="Relationship between IETF and 3GPP Network Slice Management"}
 
+Note that in Figure 7 the IETF NSC is an external entity providing Network Slice Services in the transport network and is not part of the 3GPP management architecture.
+
+1. 3GPP NSMF receives the request from 3GPP CSMF for allocation of a network slice instance with certain characteristics.
 1. The 3GPP management system receives a request from the CSMF for allocation of a network slice instance with certain characteristics.
 
 2.  Based on the service requirement, the 3GPP management system derives requirements for the end-to-end network slice instance, which is defined in Service Profile (section 6.3.3 of {{TS-28.541}}).
