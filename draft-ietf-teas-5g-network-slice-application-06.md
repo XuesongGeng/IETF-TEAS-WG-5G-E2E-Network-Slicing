@@ -448,7 +448,7 @@ The following network slice related identifiers in management, control and data 
 
 * Network Slice Service identifier : An identifier allocated by IETF Network Slice Controller (NSC) in the management plane.  See {{!I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
 
-In the context of this document, the 3GPP Network Slice Instance (NSI) is identified by the S-NSSAI value, which represents the end-to-end network slice instance. The mapping described in this document refers to the association between this NSI (via S-NSSAI) and the corresponding IETF Network Slice Service identifier.
+In the context of this document, the 3GPP Network Slice Instance (NSI) is determined by the S-NSSAI value, which represents the end-to-end network slice instance. The mapping described in this document refers to the association between this NSI (via S-NSSAI) and the corresponding IETF Network Slice Service identifier.
 
 ## 5G E2E Network Slice Mapping Procedure
 
